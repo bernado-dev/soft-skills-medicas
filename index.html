@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Rafael Souza da Silva | Liderança e Soft Skills</title>
+    <title>Dr. Rafael Souza da Silva | Liderança e Soft Skills na Saúde</title>
     <style>
         /* ================= ESTILOS GERAIS E CORES ================= */
         :root {
@@ -112,44 +112,100 @@
         .btn-curso { background-color: var(--branco); color: var(--azul-marinho); padding: 12px 20px; border: 2px solid var(--azul-marinho); border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 16px; }
         .btn-curso:hover { background-color: var(--azul-marinho); color: var(--branco); }
 
-        /* ================= IMPACTO E PROVA SOCIAL (NOVA SEÇÃO) ================= */
-        .impacto { padding: 80px 50px; background-color: var(--branco); text-align: center; border-bottom: 1px solid #E2E8F0; }
+        /* ================= IMPACTO E PROVA SOCIAL (FOTOS TURMAS + FEEDBACKS) - RESTAURADA ACIMA ================= */
+        .impacto { padding: 80px 50px; background-color: var(--cinza-fundo); text-align: center; border-bottom: 1px solid #E2E8F0; }
         .impacto h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 15px; }
         .impacto-sub { color: var(--cinza-escuro); font-size: 18px; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; }
         
+        /* Grid das 7 fotos das turmas */
         .grid-impacto { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1100px; margin: 0 auto 50px; }
         .img-impacto { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
         .img-impacto:hover { transform: scale(1.05); z-index: 2; position: relative; }
         
+        /* Layout dos Feedbacks */
         .feedbacks { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
-        .card-feedback { background-color: var(--cinza-fundo); padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; flex: 1; min-width: 300px; border-left: 5px solid var(--vermelho); transition: transform 0.3s; }
+        .card-feedback { background-color: var(--branco); padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; flex: 1; min-width: 300px; border-left: 5px solid var(--vermelho); transition: transform 0.3s; }
         .card-feedback:hover { transform: translateY(-5px); }
         .estrelas { color: var(--amarelo-estrela); font-size: 20px; margin-bottom: 15px; letter-spacing: 2px; }
         .texto-feedback { font-size: 16px; font-style: italic; color: var(--cinza-escuro); line-height: 1.6; margin-bottom: 15px; }
         .autor-feedback { font-weight: bold; color: var(--azul-marinho); }
         .destaque-500 { display: inline-block; background-color: var(--azul-marinho); color: var(--branco); padding: 10px 25px; border-radius: 30px; font-weight: bold; font-size: 18px; margin-top: 40px; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.3); }
 
-        /* ================= SOBRE O PROFESSOR ================= */
-        .sobre-professor { padding: 80px 50px; background-color: var(--branco); color: var(--cinza-escuro); display: flex; justify-content: center; align-items: center; border-top: 1px solid #E2E8F0;}
-        .container-sobre { max-width: 1200px; display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap; margin: 0 auto; }
+        /* ================= SOBRE O PROFESSOR (LAYOUT COLUNA ÚNICA, CENTRALIZADO E BEM ESPAÇADO) ================= */
+        .sobre-professor { 
+            padding: 120px 50px; /* BEM MAIS ESPAÇADO VERTICALMENTE - ESTILO ELITE */
+            background-color: var(--branco); 
+            color: var(--cinza-escuro); 
+            border-top: 1px solid #E2E8F0;
+        }
         
-        /* CSS DO MURAL DE FOTOS - NÃO CORTA CABEÇAS */
-        .mural-fotos-container { display: flex; gap: 15px; width: 100%; max-width: 450px; flex-shrink: 0; }
-        .coluna-mural { display: flex; flex-direction: column; gap: 15px; flex: 1; }
-        .img-mural { width: 100%; height: auto; border-radius: 12px; border: 2px solid var(--branco); box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-        .img-mural:hover { transform: scale(1.03); }
+        /* Container centralizado em coluna única */
+        .container-sobre-novo { 
+            max-width: 1000px; /* Mais focado */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0 auto; 
+            text-align: center;
+        }
+        
+        .container-sobre-novo h2 { 
+            font-size: 36px; 
+            color: var(--azul-marinho); 
+            margin-bottom: 60px; /* Grande espaço até o bloco de texto */
+        }
+        
+        /* Contêiner de Texto centralizado ACIMA do mural arquitetural */
+        .texto-sobre-novo { 
+            max-width: 800px; 
+            margin-bottom: 70px; /* Grande espaço até as fotos */
+        }
+        .texto-sobre-novo p { 
+            font-size: 16px; 
+            line-height: 1.8; 
+            margin-bottom: 15px; 
+        }
+        .citacao { 
+            max-width: 800px; 
+            margin: 40px auto 0 auto; 
+            font-style: italic; 
+            border-left: 4px solid var(--vermelho); 
+            padding-left: 20px; 
+            color: var(--azul-claro); 
+            font-size: 18px; 
+            line-height: 1.6; 
+            font-weight: 500;
+            text-align: left; /* Citacao alinhada à esquerda fica estrutural */
+        }
 
-        .texto-sobre { flex: 1; min-width: 300px; }
-        .texto-sobre h2 { font-size: 36px; margin-bottom: 20px; color: var(--azul-marinho); }
-        .texto-sobre p { font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
-        .citacao { font-style: italic; border-left: 4px solid var(--vermelho); padding-left: 15px; margin-top: 25px; color: var(--azul-claro); font-size: 18px; line-height: 1.6; font-weight: 500;}
+        /* MURAL DE FOTOS ARQUITETURAL E BEM ESPAÇADO ABAIXO */
+        .arquitetura-fotos-container { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+            gap: 50px; /* GRANDE ESPAÇO ENTRE AS FOTOS - ESTILO ARQUITETURAL */
+            width: 100%; 
+            max-width: 650px; /* Tamanho do bloco controlado */
+            margin: 0 auto; /* Centralizado */
+        }
+        
+        .img-arquitetural { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 12px; 
+            border: 3px solid var(--branco); /* Bordas suaves */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .img-arquitetural:hover { 
+            transform: scale(1.03) translateY(-5px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+        }
 
         /* ================= RODAPÉ E MODAL ================= */
         footer { background-color: var(--preto-rodape); color: var(--cinza-claro); text-align: center; padding: 30px; font-size: 14px; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 25, 47, 0.85); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background-color: var(--branco); padding: 40px; border-radius: 16px; max-width: 600px; width: 90%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);}
-        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 32px; cursor: pointer; color: #A0AEC0; font-weight: normal; transition: 0.3s; }
-        .close-btn:hover { color: var(--vermelho); }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 32px; cursor: pointer; color: #A0AEC0; }
 
         /* ================= WHATSAPP FLUTUANTE ================= */
         .whatsapp-btn {
@@ -168,33 +224,38 @@
             z-index: 999;
             transition: all 0.3s ease;
         }
-        .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
+        .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
         .whatsapp-icon { width: 38px; height: 38px; }
 
-        /* ================= RESPONSIVIDADE ================= */
+        /* ================= RESPONSIVIDADE (CELULARES E TABLETS) ================= */
         @media (max-width: 768px) {
             header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
             nav a { margin-left: 0; font-size: 14px; }
-            .secao-destaque-logo { padding: 40px 20px 60px; }
-            .card-logo-flutuante { padding: 30px 20px; border-radius: 16px; margin-bottom: -30px; }
-            .logo-img-destaque { max-height: 150px; margin-bottom: 20px; }
             .hero-h1-destaque { font-size: 24px; }
             .hero-p-destaque { font-size: 16px; }
-            .btn { width: 100%; font-size: 16px; padding: 15px 20px; }
+            .card-logo-flutuante { padding: 30px 20px; }
             
-            .publico-alvo, .o-que-aprende, .cta-fechamento, .cursos, .sobre-professor, .impacto { padding: 50px 20px; }
-            .publico-alvo h2, .o-que-aprende h2, .cursos h2, .texto-sobre h2, .cta-fechamento h3, .impacto h2 { font-size: 28px; margin-bottom: 30px; }
+            .publico-alvo, .o-que-aprende, .cursos, .impacto { padding: 50px 20px; }
+            .sobre-professor { padding: 80px 20px; } /* Espaçamento elite mobile */
             
             .features-bar { padding: 20px; gap: 20px; flex-direction: column; }
             .feature-item { font-size: 15px; }
-            .container-sobre { flex-direction: column; gap: 30px; text-align: center; }
             
-            .mural-fotos-container { max-width: 100%; gap: 10px; }
-            .coluna-mural { gap: 10px; }
+            /* Ajuste Novo Layout Mobile */
+            .container-sobre-novo { gap: 0; } /* Remove gap geral, controla nos elementos */
+            .container-sobre-novo h2 { font-size: 28px; margin-bottom: 40px; }
+            .texto-sobre-novo { margin-bottom: 50px; }
+            
+            /* Ajuste Mosaico Arquitetural Mobile - Empilhado com Espaço */
+            .arquitetura-fotos-container { 
+                grid-template-columns: 1fr; /* Empilha em uma coluna */
+                gap: 30px; /* Espaço entre as fotos empilhadas */
+                max-width: 100%; 
+                margin-bottom: 0; 
+            }
 
-            .citacao { text-align: left; font-size: 16px; }
-            .modal-content { padding: 30px 20px; }
+            .citacao { text-align: left; font-size: 16px; margin-top: 30px;}
             .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
             .whatsapp-icon { width: 30px; height: 30px; }
         }
@@ -208,7 +269,7 @@
         </div>
         <nav>
             <a href="#inicio">Início</a>
-            <a href="#aprender">Seu Caminho</a>
+            <a href="#impacto">Impacto</a>
             <a href="#cursos">Cursos</a>
             <a href="#sobre">Sobre o Professor</a>
         </nav>
@@ -216,7 +277,7 @@
 
     <section class="secao-destaque-logo" id="inicio">
         <div class="card-logo-flutuante">
-            <img src="Gemini_Generated_Image_wua9m6wua9m6wua9.png" alt="Logo do Programa - Soft Skills Médicas" class="logo-img-destaque">
+            <img src="Gemini_Generated_Image_wua9m6wua9m6wua9.png" alt="Logo do Programa" class="logo-img-destaque">
             <h1 class="hero-h1-destaque">O verdadeiro diferencial competitivo continuará sendo profundamente humano.</h1>
             <p class="hero-p-destaque">Em um mundo onde a inteligência artificial avança rapidamente, a excelência clínica não se constrói apenas com conhecimento técnico. A prática médica é, antes de tudo, uma prática humana. Desenvolva as soft skills que formam o alicerce da nova liderança.</p>
             <button class="btn" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
@@ -332,24 +393,21 @@
     </section>
 
     <section class="sobre-professor" id="sobre">
-        <div class="container-sobre">
-            <div class="mural-fotos-container">
-                <div class="coluna-mural">
-                    <img src="foto1.png.jpeg" alt="Dr. Rafael Souza" class="img-mural">
-                    <img src="foto3.png.jpeg" alt="Dr. Rafael Souza" class="img-mural">
-                </div>
-                <div class="coluna-mural">
-                    <img src="foto2.png.jpeg" alt="Dr. Rafael Souza" class="img-mural">
-                    <img src="foto4.png.jpeg" alt="Dr. Rafael Souza" class="img-mural">
-                </div>
-            </div>
+        <div class="container-sobre-novo">
+            <h2>Conheça o Dr. Rafael Souza da Silva</h2>
             
-            <div class="texto-sobre">
-                <h2>Conheça o Dr. Rafael Souza da Silva</h2>
+            <div class="texto-sobre-novo">
                 <p>Com vasta experiência em atendimentos de ponta, o Dr. Rafael atua diretamente na gestão de programas de saúde, gestão de pessoas e coordenação médica. Ele vive a realidade dos consultórios e hospitais diariamente, entendendo os desafios práticos da liderança médica moderna.</p>
                 <div class="citacao">
                     "A excelência clínica não se constrói apenas com conhecimento técnico, mas também com comunicação, empatia e escuta ativa. Um ambiente de trabalho saudável transforma o clima organizacional. Cuidar de quem cuida não é clichê. É a nossa marca!"
                 </div>
+            </div>
+
+            <div class="arquitetura-fotos-container">
+                <img src="foto1.png.jpeg" alt="Dr. Rafael Souza 1" class="img-arquitetural">
+                <img src="foto3.png.jpeg" alt="Dr. Rafael Souza 3" class="img-arquitetural">
+                <img src="foto2.png.jpeg" alt="Dr. Rafael Souza 2" class="img-arquitetural">
+                <img src="foto4.png.jpeg" alt="Dr. Rafael Souza 4" class="img-arquitetural">
             </div>
         </div>
     </section>
