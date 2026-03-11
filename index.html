@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Rafael Souza da Silva | Liderança e Soft Skills</title>
+    <style>
+        /* Estilos e Paleta de Cores */
+        :root {
+            --azul-marinho: #0A192F;
+            --azul-gradiente: #112B54;
+            --vermelho: #E53E3E;
+            --branco: #FFFFFF;
+            --cinza-claro: #F7FAFC;
+            --cinza-fundo: #EDF2F7;
+            --cinza-escuro: #2D3748;
+            --amarelo-estrela: #EAB308;
+            --preto-rodape: #050C17;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--cinza-fundo); color: var(--cinza-escuro); }
+        html { scroll-behavior: smooth; }
+
+        /* Cabeçalho Azul Marinho */
+        header { 
+            background-color: var(--azul-marinho); 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            border-bottom: 2px solid var(--vermelho); 
+        }
+        .logo { display: flex; align-items: center; }
+        .nome-professor { font-size: 20px; font-weight: 700; color: var(--branco); margin: 0; }
+        
+        nav a { color: var(--cinza-claro); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--vermelho); }
+
+        /* Seção Hero com Degradê Estilo Plataforma Moderna */
+        .secao-destaque-logo { 
+            background: linear-gradient(135deg, var(--azul-marinho) 0%, var(--azul-gradiente) 100%);
+            padding: 80px 20px 100px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        /* O "Card" Branco Flutuante que abriga a logo */
+        .card-logo-flutuante {
+            background-color: var(--branco);
+            padding: 40px 60px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            max-width: 900px;
+            width: 100%;
+            margin-bottom: -50px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img-destaque { 
+            max-height: 220px; 
+            width: auto; 
+            margin-bottom: 30px;
+        }
+
+        .hero-h1-destaque { 
+            color: var(--azul-marinho); 
+            font-size: 34px; 
+            margin-bottom: 20px; 
+            font-weight: 800; 
+            line-height: 1.3; 
+        }
+
+        .hero-p-destaque {
+            font-size: 18px; 
+            line-height: 1.6; 
+            color: var(--cinza-escuro); 
+            margin-bottom: 30px;
+        }
+
+        .btn { background-color: var(--vermelho); color: var(--branco); padding: 16px 45px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(229, 62, 62, 0.4); }
+        .btn:hover { background-color: #C53030; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(229, 62, 62, 0.5); }
+
+        /* Espaçamento compensatório para o card flutuante */
+        .espacador { height: 60px; background-color: var(--cinza-fundo); }
+
+        /* Barra de Destaques */
+        .features-bar { display: flex; justify-content: center; gap: 50px; background-color: var(--branco); padding: 30px 50px; border-bottom: 1px solid #E2E8F0; flex-wrap: wrap; position: relative; z-index: 5; }
+        .feature-item { text-align: center; font-size: 16px; color: var(--azul-marinho); }
+        .feature-item strong { display: block; font-size: 20px; color: var(--vermelho); margin-bottom: 5px; }
+
+        /* Para quem é o curso */
+        .publico-alvo { padding: 80px 50px; background-color: var(--cinza-fundo); text-align: center; }
+        .publico-alvo h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 50px; }
+        .grid-publico { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+        .item-publico { flex: 1; min-width: 250px; padding: 30px; background-color: var(--branco); border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .icone-publico { font-size: 45px; margin-bottom: 20px; }
+        .item-publico p { font-size: 16px; line-height: 1.6; color: var(--cinza-escuro); }
+
+        /* O que você aprenderá */
+        .o-que-aprende { padding: 80px 50px; background-color: var(--branco); }
+        .o-que-aprende h2 { text-align: center; color: var(--azul-marinho); font-size: 36px; margin-bottom: 50px; }
+        .grid-aprende { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
+        .item-aprende { background-color: var(--cinza-fundo); border-radius: 12px; border: 1px solid #E2E8F0; overflow: hidden; transition: all 0.3s; }
+        .item-aprende:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-color: var(--azul-claro); }
+        .card-header-aprende { background-color: var(--azul-marinho); color: var(--branco); padding: 20px; display: flex; align-items: center; gap: 15px; }
+        .card-icone-aprende { font-size: 28px; color: var(--vermelho); }
+        .item-aprende h4 { font-size: 20px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px;}
+        .card-body-aprende { padding: 25px; }
+        .item-aprende p { font-size: 15px; line-height: 1.7; color: var(--cinza-escuro); margin: 0; }
+
+        /* Fechamento / CTA */
+        .cta-fechamento { padding: 60px 50px; background-color: var(--azul-marinho); color: var(--branco); text-align: center; }
+        .cta-fechamento h3 { font-size: 28px; margin-bottom: 20px; }
+        .cta-fechamento p { font-size: 18px; color: var(--cinza-claro); max-width: 700px; margin: 0 auto 30px; font-style: italic; }
+
+        /* Vitrine de Cursos */
+        .cursos { padding: 80px 50px; background-color: var(--cinza-fundo); }
+        .cursos-header { text-align: center; margin-bottom: 50px; }
+        .cursos h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 10px; }
+        
+        .grid-cursos { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .card { background-color: var(--branco); border-radius: 12px; padding: 30px; width: 350px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #E2E8F0; transition: transform 0.3s; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        .badge { position: absolute; top: -12px; left: 20px; background-color: var(--vermelho); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;}
+        .card h3 { color: var(--azul-marinho); margin-bottom: 15px; font-size: 22px; margin-top: 10px; }
+        .card p { font-size: 14px; margin-bottom: 20px; line-height: 1.6; color: #4A5568; }
+        .btn-curso { background-color: var(--branco); color: var(--azul-marinho); padding: 12px 20px; border: 2px solid var(--azul-marinho); border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 16px; }
+        .btn-curso:hover { background-color: var(--azul-marinho); color: var(--branco); }
+
+        /* Sobre o Professor */
+        .sobre-professor { padding: 80px 50px; background-color: var(--branco); color: var(--cinza-escuro); display: flex; justify-content: center; align-items: center; border-top: 1px solid #E2E8F0;}
+        .container-sobre { max-width: 1000px; display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
+        .foto-professor-container { width: 320px; height: 320px; border-radius: 50%; border: 5px solid var(--azul-marinho); overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 15px 35px rgba(0,0,0,0.15); flex-shrink: 0; }
+        .foto-professor-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .texto-sobre { flex: 1; min-width: 300px; }
+        .texto-sobre h2 { font-size: 36px; margin-bottom: 20px; color: var(--azul-marinho); }
+        .texto-sobre p { font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
+        .citacao { font-style: italic; border-left: 4px solid var(--vermelho); padding-left: 15px; margin-top: 25px; color: var(--azul-claro); font-size: 18px; line-height: 1.6; font-weight: 500;}
+
+        /* Rodapé */
+        footer { background-color: var(--preto-rodape); color: var(--cinza-claro); text-align: center; padding: 30px; font-size: 14px; }
+
+        /* Modal (Popup de Matrícula) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 25, 47, 0.85); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--branco); padding: 40px; border-radius: 16px; max-width: 600px; width: 90%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);}
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 32px; cursor: pointer; color: #A0AEC0; font-weight: normal; transition: 0.3s; }
+        .close-btn:hover { color: var(--vermelho); }
+
+        /* Botão do WhatsApp Flutuante */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-icon { width: 38px; height: 38px; }
+
+        /* 📱 RESPONSIVIDADE PARA CELULARES E TABLETS */
+        @media (max-width: 768px) {
+            /* Cabeçalho */
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav a { margin-left: 0; font-size: 14px; }
+
+            /* Hero e Logo */
+            .secao-destaque-logo { padding: 40px 20px 60px; }
+            .card-logo-flutuante { padding: 30px 20px; border-radius: 16px; margin-bottom: -30px; }
+            .logo-img-destaque { max-height: 150px; margin-bottom: 20px; }
+            .hero-h1-destaque { font-size: 24px; }
+            .hero-p-destaque { font-size: 16px; }
+            .btn { width: 100%; font-size: 16px; padding: 15px 20px; }
+
+            /* Espaçamentos e Textos Gerais */
+            .publico-alvo, .o-que-aprende, .cta-fechamento, .cursos, .sobre-professor { padding: 50px 20px; }
+            .publico-alvo h2, .o-que-aprende h2, .cursos h2, .texto-sobre h2, .cta-fechamento h3 { font-size: 28px; margin-bottom: 30px; }
+            
+            /* Barra de Destaques */
+            .features-bar { padding: 20px; gap: 20px; flex-direction: column; }
+            .feature-item { font-size: 15px; }
+
+            /* Sobre o Professor */
+            .container-sobre { flex-direction: column; gap: 30px; text-align: center; }
+            .foto-professor-container { width: 220px; height: 220px; }
+            .citacao { text-align: left; font-size: 16px; }
+
+            /* Modal e WhatsApp */
+            .modal-content { padding: 30px 20px; }
+            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .whatsapp-icon { width: 30px; height: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <p class="nome-professor">Dr. Rafael Souza da Silva</p>
+        </div>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#aprender">Seu Caminho</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#sobre">Sobre o Professor</a>
+        </nav>
+    </header>
+
+    <section class="secao-destaque-logo" id="inicio">
+        <div class="card-logo-flutuante">
+            <img src="Gemini_Generated_Image_wua9m6wua9m6wua9.png" alt="Logo do Programa - Soft Skills Médicas" class="logo-img-destaque">
+            <h1 class="hero-h1-destaque">O verdadeiro diferencial competitivo continuará sendo profundamente humano.</h1>
+            <p class="hero-p-destaque">Em um mundo onde a inteligência artificial avança rapidamente, a excelência clínica não se constrói apenas com conhecimento técnico. A prática médica é, antes de tudo, uma prática humana. Desenvolva as soft skills que formam o alicerce da nova liderança.</p>
+            <button class="btn" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
+        </div>
+    </section>
+
+    <div class="espacador"></div>
+
+    <div class="features-bar">
+        <div class="feature-item"><strong>💻 100% Online</strong> Estude onde e quando quiser</div>
+        <div class="feature-item"><strong>⏱️ +12 Horas</strong> De aulas práticas e teoria</div>
+        <div class="feature-item"><strong>📜 Certificado</strong> Reconhecido no mercado</div>
+        <div class="feature-item"><strong>♾️ Acesso</strong> Vitalício ao conteúdo</div>
+    </div>
+
+    <section class="publico-alvo">
+        <h2>Este curso é pra você se...</h2>
+        <div class="grid-publico">
+            <div class="item-publico">
+                <div class="icone-publico">🎯</div>
+                <p>Entende que <strong>cuidar de quem cuida não é clichê</strong> e deseja transformar o clima organizacional da sua clínica ou hospital.</p>
+            </div>
+            <div class="item-publico">
+                <div class="icone-publico">⚡</div>
+                <p>Quer inspirar empatia e fortalecer vínculos em equipes, cultivando relações que fazem bem para a saúde e para a alma.</p>
+            </div>
+            <div class="item-publico">
+                <div class="icone-publico">🤝</div>
+                <p>Deseja desenvolver atitudes inovadoras e entender que liderar é influenciar pessoas e sustentar caminhos em cenários complexos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="o-que-aprende" id="aprender">
+        <h2>O Alicerce da Nova Liderança</h2>
+        <div class="grid-aprende">
+            <div class="item-aprende">
+                <div class="card-header-aprende"><div class="card-icone-aprende">📈</div><h4>Liderança Humana</h4></div>
+                <div class="card-body-aprende"><p>O que diferencia líderes não é apenas o que sabem, mas como pensam, se relacionam e o sentido que dão ao trabalho diário.</p></div>
+            </div>
+            <div class="item-aprende">
+                <div class="card-header-aprende"><div class="card-icone-aprende">💬</div><h4>Gestão de Conflitos</h4></div>
+                <div class="card-body-aprende"><p>Saber reconhecer conflitos, conduzi-los e transformá-los em aprendizado é uma competência tão essencial quanto dominar protocolos e diagnósticos.</p></div>
+            </div>
+            <div class="item-aprende">
+                <div class="card-header-aprende"><div class="card-icone-aprende">💡</div><h4>Propósito e Pertencimento</h4></div>
+                <div class="card-body-aprende"><p>Cultive o senso de pertencimento e o propósito, fortalecendo a covitalidade e o crescimento coletivo de toda a sua corporação.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-fechamento">
+        <h3>Assuma o protagonismo da sua própria história.</h3>
+        <p>"Não espere o momento perfeito. Ele nasce quando você decide agir. O sonho que te move é bem maior que as críticas. Bora sair do lugar!"</p>
+        <button class="btn" style="background-color: var(--branco); color: var(--azul-marinho);" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
+    </section>
+
+    <section class="cursos" id="cursos">
+        <div class="cursos-header">
+            <h2>Nossas Formações</h2>
+        </div>
+        <div class="grid-cursos">
+            <div class="card">
+                <span class="badge">Mais Vendido</span>
+                <h3>Liderança Médica e Gestão</h3>
+                <p>Desenvolva a capacidade de influenciar positivamente sua equipe, tomar decisões sob pressão e criar ambientes saudáveis.</p>
+                <button class="btn-curso" onclick="abrirCurso('Liderança Médica e Gestão')">Ver Detalhes</button>
+            </div>
+            <div class="card">
+                <span class="badge">Novo</span>
+                <h3>Soft Skills no Atendimento</h3>
+                <p>O complemento essencial que transforma o excelente técnico em uma referência. Aprenda comunicação eficaz e escuta ativa.</p>
+                <button class="btn-curso" onclick="abrirCurso('Soft Skills no Atendimento')">Ver Detalhes</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre-professor" id="sobre">
+        <div class="container-sobre">
+            <div class="foto-professor-container">
+                <img src="02c0665d-c236-4fab-8a07-4a8681daa7a1.jpg" alt="Foto do Dr. Rafael Souza da Silva" class="foto-professor-img">
+            </div>
+            <div class="texto-sobre">
+                <h2>Conheça o Dr. Rafael Souza da Silva</h2>
+                <p>Com vasta experiência em atendimentos de ponta, o Dr. Rafael atua diretamente na gestão de programas de saúde, gestão de pessoas e coordenação médica. Ele vive a realidade dos consultórios e hospitais diariamente, entendendo os desafios práticos da liderança médica moderna.</p>
+                <div class="citacao">
+                    "A excelência clínica não se constrói apenas com conhecimento técnico, mas também com comunicação, empatia e escuta ativa. Um ambiente de trabalho saudável transforma o clima organizacional. Cuidar de quem cuida não é clichê. É a nossa marca!"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Dr. Rafael Souza da Silva © 2026 - Liderança e Soft Skills na Saúde</p>
+    </footer>
+
+    <div class="modal" id="meuModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">×</span>
+            <h2 id="tituloModal" style="color: var(--azul-marinho); margin-bottom: 20px;">Nome do Curso</h2>
+            <p style="color: var(--cinza-escuro); margin-bottom: 20px;">Módulos liberados imediatamente após a confirmação da inscrição.</p>
+            <div style="font-size: 32px; font-weight: 800; color: var(--azul-marinho); margin: 20px 0; text-align: center;">R$ 297,00</div>
+            
+            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn" style="display: block; width: 100%; background-color: var(--vermelho); padding: 20px; font-size: 20px; text-align: center; text-decoration: none; color: var(--branco);">Finalizar Matrícula</a>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5511983833256?text=Olá,%20gostaria%20de%20tirar%20uma%20dúvida%20sobre%20as%20formações%20em%20Liderança%20Médica!" class="whatsapp-btn" target="_blank">
+        <svg viewBox="0 0 24 24" class="whatsapp-icon" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <script>
+        function abrirCurso(nome) {
+            document.getElementById('tituloModal').innerText = nome;
+            document.getElementById('meuModal').style.display = 'flex';
+        }
+        function fecharModal() {
+            document.getElementById('meuModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
