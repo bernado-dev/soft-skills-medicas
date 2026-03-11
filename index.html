@@ -19,12 +19,31 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--cinza-fundo); color: var(--cinza-escuro); }
+        body { background-color: var(--cinza-fundo); color: var(--cinza-escuro); overflow-x: hidden; }
         html { scroll-behavior: smooth; }
 
-        /* ================= CABEÇALHO ================= */
+        /* ================= ANIMAÇÕES GERAIS ================= */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(229, 62, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= CABEÇALHO (GLASSMORPHISM) ================= */
         header { 
-            background-color: var(--azul-marinho); 
+            background-color: rgba(10, 25, 47, 0.85); /* Translúcido */
+            backdrop-filter: blur(12px); /* Efeito Vidro Fosco */
+            -webkit-backdrop-filter: blur(12px);
             padding: 15px 50px; 
             display: flex; 
             justify-content: space-between; 
@@ -32,7 +51,6 @@
             position: sticky; 
             top: 0; 
             z-index: 100; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
             border-bottom: 2px solid var(--vermelho); 
         }
         .logo { display: flex; align-items: center; }
@@ -50,7 +68,9 @@
             align-items: center; 
         }
         .card-logo-flutuante {
-            background-color: var(--branco);
+            background-color: rgba(255, 255, 255, 0.95); /* Translúcido */
+            backdrop-filter: blur(10px); /* Efeito Vidro Fosco */
+            -webkit-backdrop-filter: blur(10px);
             padding: 40px 60px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.25);
@@ -66,8 +86,23 @@
         .logo-img-destaque { max-height: 220px; width: auto; margin-bottom: 30px; }
         .hero-h1-destaque { color: var(--azul-marinho); font-size: 34px; margin-bottom: 20px; font-weight: 800; line-height: 1.3; }
         .hero-p-destaque { font-size: 18px; line-height: 1.6; color: var(--cinza-escuro); margin-bottom: 30px; }
-        .btn { background-color: var(--vermelho); color: var(--branco); padding: 16px 45px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(229, 62, 62, 0.4); text-decoration: none; display: inline-block;}
-        .btn:hover { background-color: #C53030; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(229, 62, 62, 0.5); }
+        
+        .btn { 
+            background-color: var(--vermelho); 
+            color: var(--branco); 
+            padding: 16px 45px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.3s; 
+            text-decoration: none; 
+            display: inline-block;
+        }
+        .btn:hover { background-color: #C53030; transform: translateY(-3px); }
+        .btn-glow { animation: pulse-red 2s infinite; } /* Classe do efeito neon */
+
         .espacador { height: 60px; background-color: var(--cinza-fundo); }
 
         /* ================= DESTAQUES ================= */
@@ -109,15 +144,14 @@
         .cta-fechamento h3 { font-size: 28px; margin-bottom: 20px; }
         .cta-fechamento p { font-size: 18px; color: var(--cinza-claro); max-width: 700px; margin: 0 auto 30px; font-style: italic; }
 
-        /* ================= CURSOS ================= */
+        /* ================= CURSOS (SEM SELOS DE ESCASSEZ) ================= */
         .cursos { padding: 80px 50px; background-color: var(--branco); }
         .cursos-header { text-align: center; margin-bottom: 50px; }
         .cursos h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 10px; }
         .grid-cursos { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        .card { background-color: var(--cinza-fundo); border-radius: 12px; padding: 30px; width: 350px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #E2E8F0; transition: transform 0.3s; position: relative; }
+        .card { background-color: var(--cinza-fundo); border-radius: 12px; padding: 40px 30px 30px; width: 350px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #E2E8F0; transition: transform 0.3s; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-        .badge { position: absolute; top: -12px; left: 20px; background-color: var(--vermelho); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;}
-        .card h3 { color: var(--azul-marinho); margin-bottom: 15px; font-size: 22px; margin-top: 10px; }
+        .card h3 { color: var(--azul-marinho); margin-bottom: 15px; font-size: 22px; }
         .card p { font-size: 14px; margin-bottom: 20px; line-height: 1.6; color: #4A5568; }
         .btn-curso { background-color: var(--branco); color: var(--azul-marinho); padding: 12px 20px; border: 2px solid var(--azul-marinho); border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 16px; }
         .btn-curso:hover { background-color: var(--azul-marinho); color: var(--branco); }
@@ -228,7 +262,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
         }
 
-        /* ================= NOVO: ACERVO CIENTÍFICO E PROFISSIONAL ================= */
+        /* ================= ACERVO CIENTÍFICO E PROFISSIONAL ================= */
         .acervo-cientifico {
             width: 100%;
             max-width: 1000px;
@@ -289,7 +323,6 @@
             font-size: 18px;
         }
         
-        /* Sistema de Rolagem (Scrollbox) para a Produção Científica */
         .scroll-box {
             max-height: 400px;
             overflow-y: auto;
@@ -302,7 +335,7 @@
 
         /* ================= RODAPÉ E MODAL ================= */
         footer { background-color: var(--preto-rodape); color: var(--cinza-claro); text-align: center; padding: 30px; font-size: 14px; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 25, 47, 0.85); z-index: 1000; justify-content: center; align-items: center; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 25, 47, 0.85); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background-color: var(--branco); padding: 40px; border-radius: 16px; max-width: 600px; width: 90%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);}
         .close-btn { position: absolute; top: 15px; right: 25px; font-size: 32px; cursor: pointer; color: #A0AEC0; }
 
@@ -326,8 +359,39 @@
         .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
         .whatsapp-icon { width: 38px; height: 38px; }
 
+        /* ================= BARRA DE COMPRA MOBILE (NOVA) ================= */
+        .barra-mobile-fixa {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 998;
+            border-top: 2px solid var(--vermelho);
+            justify-content: space-between;
+            align-items: center;
+        }
+        .barra-mobile-preco {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--azul-marinho);
+        }
+        .barra-mobile-preco span {
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            color: var(--cinza-escuro);
+        }
+
         /* ================= RESPONSIVIDADE ================= */
         @media (max-width: 768px) {
+            body { padding-bottom: 80px; } /* Espaço para a barra mobile */
+            
             header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
             nav a { margin-left: 0; font-size: 14px; }
@@ -356,20 +420,17 @@
 
             .texto-sobre-novo { margin-bottom: 50px; }
             
-            .arquitetura-fotos-container { 
-                grid-template-columns: 1fr; 
-                gap: 30px; 
-                max-width: 100%; 
-                margin-bottom: 0; 
-            }
+            .arquitetura-fotos-container { grid-template-columns: 1fr; gap: 30px; max-width: 100%; margin-bottom: 0; }
 
-            /* Acervo Científico Mobile */
             .acervo-cientifico { padding: 30px 20px; margin-top: 50px; }
             .acervo-cientifico h3 { font-size: 22px; }
             .acervo-grid { grid-template-columns: 1fr; gap: 20px; }
 
             .citacao { text-align: left; font-size: 16px; margin-top: 30px;}
-            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            
+            /* Ativa a barra de compra mobile e sobe o WhatsApp */
+            .barra-mobile-fixa { display: flex; }
+            .whatsapp-btn { bottom: 100px; right: 20px; width: 55px; height: 55px; }
             .whatsapp-icon { width: 30px; height: 30px; }
         }
     </style>
@@ -389,25 +450,25 @@
         </nav>
     </header>
 
-    <section class="secao-destaque-logo" id="inicio">
+    <section class="secao-destaque-logo fade-in" id="inicio">
         <div class="card-logo-flutuante">
             <img src="Gemini_Generated_Image_wua9m6wua9m6wua9.png" alt="Logo do Programa" class="logo-img-destaque">
             <h1 class="hero-h1-destaque">O verdadeiro diferencial competitivo continuará sendo profundamente humano.</h1>
             <p class="hero-p-destaque">Em um mundo onde a inteligência artificial avança rapidamente, a excelência clínica não se constrói apenas com conhecimento técnico. A prática médica é, antes de tudo, uma prática humana. Desenvolva as soft skills que formam o alicerce da nova liderança.</p>
-            <button class="btn" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
+            <button class="btn btn-glow" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
         </div>
     </section>
 
     <div class="espacador"></div>
 
-    <div class="features-bar">
+    <div class="features-bar fade-in">
         <div class="feature-item"><strong>💻 100% Online</strong> Estude onde e quando quiser</div>
         <div class="feature-item"><strong>⏱️ +12 Horas</strong> De aulas práticas e teoria</div>
         <div class="feature-item"><strong>📜 Certificado</strong> Reconhecido no mercado</div>
         <div class="feature-item"><strong>♾️ Acesso</strong> Vitalício ao conteúdo</div>
     </div>
 
-    <section class="problema-cientifico">
+    <section class="problema-cientifico fade-in">
         <h2>A sua técnica salva vidas.<br><span style="color: var(--vermelho);">A sua comunicação salva a sua carreira.</span></h2>
         <div class="grid-problema">
             <div class="card-problema">
@@ -421,7 +482,7 @@
         </div>
     </section>
 
-    <section class="metodo-pratico" id="aprender">
+    <section class="metodo-pratico fade-in" id="aprender">
         <h2>Um Método Aplicável e Direto ao Ponto</h2>
         <div class="grid-metodo">
             <div class="card-metodo">
@@ -439,7 +500,7 @@
         </div>
     </section>
 
-    <section class="publico-alvo">
+    <section class="publico-alvo fade-in">
         <h2>Este curso é pra você se...</h2>
         <div class="grid-publico">
             <div class="item-publico">
@@ -457,25 +518,23 @@
         </div>
     </section>
 
-    <section class="cta-fechamento">
+    <section class="cta-fechamento fade-in">
         <h3>Assuma o protagonismo da sua própria história.</h3>
         <p>"Não espere o momento perfeito. Ele nasce quando você decide agir. O sonho que te move é bem maior que as críticas. Bora sair do lugar!"</p>
-        <button class="btn" style="background-color: var(--branco); color: var(--azul-marinho);" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
+        <button class="btn btn-glow" style="background-color: var(--branco); color: var(--azul-marinho);" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
     </section>
 
-    <section class="cursos" id="cursos">
+    <section class="cursos fade-in" id="cursos">
         <div class="cursos-header">
             <h2>Nossas Formações</h2>
         </div>
         <div class="grid-cursos">
             <div class="card">
-                <span class="badge">Mais Vendido</span>
                 <h3>Liderança Médica e Gestão</h3>
                 <p>Desenvolva a capacidade de influenciar positivamente sua equipe, tomar decisões sob pressão e criar ambientes saudáveis.</p>
                 <button class="btn-curso" onclick="abrirCurso('Liderança Médica e Gestão')">Ver Detalhes</button>
             </div>
             <div class="card">
-                <span class="badge">Novo</span>
                 <h3>Soft Skills no Atendimento</h3>
                 <p>O complemento essencial que transforma o excelente técnico em uma referência. Aprenda comunicação eficaz e escuta ativa.</p>
                 <button class="btn-curso" onclick="abrirCurso('Soft Skills no Atendimento')">Ver Detalhes</button>
@@ -483,7 +542,7 @@
         </div>
     </section>
 
-    <section class="impacto" id="impacto">
+    <section class="impacto fade-in" id="impacto">
         <h2>Impacto Real na Saúde</h2>
         <p class="impacto-sub">A verdadeira liderança se prova na linha de frente e na conexão humana. Veja registros das capacitações e o carinho com nossa maior prioridade: as pessoas.</p>
         
@@ -520,7 +579,7 @@
         </div>
     </section>
 
-    <section class="sobre-professor" id="sobre">
+    <section class="sobre-professor fade-in" id="sobre">
         <div class="container-sobre-novo">
             <h2>Conheça o Dr. Rafael Souza da Silva</h2>
 
@@ -548,7 +607,7 @@
                 <img src="foto4.png.jpeg" alt="Dr. Rafael Souza 4" class="img-arquitetural">
             </div>
 
-            <div class="acervo-cientifico">
+            <div class="acervo-cientifico fade-in">
                 <h3>Trajetória e Validação Científica</h3>
                 
                 <div class="acervo-grid">
@@ -618,12 +677,21 @@
                     </div>
                 </div>
             </div>
-            </div>
+
+        </div>
     </section>
 
     <footer>
         <p>Dr. Rafael Souza da Silva © 2026 - Liderança e Soft Skills na Saúde</p>
     </footer>
+
+    <div class="barra-mobile-fixa">
+        <div class="barra-mobile-preco">
+            <span>Formação Completa</span>
+            R$ 297,00
+        </div>
+        <button class="btn btn-glow" style="padding: 12px 25px; font-size: 16px;" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Garantir Vaga</button>
+    </div>
 
     <div class="modal" id="meuModal">
         <div class="modal-content">
@@ -632,7 +700,7 @@
             <p style="color: var(--cinza-escuro); margin-bottom: 20px;">Módulos liberados imediatamente após a confirmação da inscrição.</p>
             <div style="font-size: 32px; font-weight: 800; color: var(--azul-marinho); margin: 20px 0; text-align: center;">R$ 297,00</div>
             
-            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn" style="display: block; width: 100%; background-color: var(--vermelho); padding: 20px; font-size: 20px; text-align: center; text-decoration: none; color: var(--branco);">Finalizar Matrícula</a>
+            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn btn-glow" style="display: block; width: 100%; background-color: var(--vermelho); padding: 20px; font-size: 20px; text-align: center; text-decoration: none; color: var(--branco);">Finalizar Matrícula</a>
         </div>
     </div>
 
@@ -643,6 +711,26 @@
     </a>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+
         function abrirCurso(nome) {
             document.getElementById('tituloModal').innerText = nome;
             document.getElementById('meuModal').style.display = 'flex';
