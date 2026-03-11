@@ -359,38 +359,9 @@
         .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
         .whatsapp-icon { width: 38px; height: 38px; }
 
-        /* ================= BARRA DE COMPRA MOBILE ================= */
-        .barra-mobile-fixa {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            padding: 15px 20px;
-            z-index: 998;
-            border-top: 2px solid var(--vermelho);
-            justify-content: space-between;
-            align-items: center;
-        }
-        .barra-mobile-preco {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--azul-marinho);
-        }
-        .barra-mobile-preco span {
-            display: block;
-            font-size: 12px;
-            font-weight: normal;
-            color: var(--cinza-escuro);
-        }
-
         /* ================= RESPONSIVIDADE ================= */
         @media (max-width: 768px) {
-            body { padding-bottom: 80px; } 
+            /* Removido o padding-bottom que era da barra fixa */
             
             header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -420,7 +391,13 @@
 
             .texto-sobre-novo { margin-bottom: 50px; }
             
-            .arquitetura-fotos-container { grid-template-columns: 1fr; gap: 30px; max-width: 100%; margin-bottom: 0; }
+            /* Ajuste para as fotos ficarem compactas (2 colunas) no celular */
+            .arquitetura-fotos-container { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px; 
+                max-width: 100%; 
+                margin-bottom: 0; 
+            }
 
             .acervo-cientifico { padding: 30px 20px; margin-top: 50px; }
             .acervo-cientifico h3 { font-size: 22px; }
@@ -428,8 +405,8 @@
 
             .citacao { text-align: left; font-size: 16px; margin-top: 30px;}
             
-            .barra-mobile-fixa { display: flex; }
-            .whatsapp-btn { bottom: 100px; right: 20px; width: 55px; height: 55px; }
+            /* O botão do whatsapp volta para a posição original no canto da tela */
+            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
             .whatsapp-icon { width: 30px; height: 30px; }
         }
     </style>
@@ -684,14 +661,6 @@
         <p>Dr. Rafael Souza da Silva © 2026 - Liderança e Soft Skills na Saúde</p>
     </footer>
 
-    <div class="barra-mobile-fixa">
-        <div class="barra-mobile-preco">
-            <span>Formação Completa</span>
-            R$ 297,00
-        </div>
-        <button class="btn btn-glow" style="padding: 12px 25px; font-size: 16px;" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Garantir Vaga</button>
-    </div>
-
     <div class="modal" id="meuModal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharModal()">×</span>
@@ -713,7 +682,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const faders = document.querySelectorAll('.fade-in');
             
-            // Alterado de 0.15 (15%) para 0.01 (1%) para não travar no celular
             const appearOptions = {
                 threshold: 0.01, 
                 rootMargin: "0px 0px 0px 0px"
