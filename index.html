@@ -171,7 +171,6 @@
         .btn-curso { background-color: var(--branco); color: var(--azul-marinho); padding: 14px 20px; border: 2px solid var(--azul-marinho); border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 16px; margin-top: auto; }
         .btn-curso:hover { background-color: var(--azul-marinho); color: var(--branco); border-color: var(--azul-marinho); }
         
-        /* Destaque para o plano Premium */
         .card-premium { border: 2px solid var(--dourado); background-color: #FDFBF7; position: relative; }
         .selo-premium { position: absolute; top: -15px; right: 20px; background-color: var(--dourado); color: var(--branco); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
 
@@ -572,6 +571,26 @@
                 <p class="texto-feedback">"Excelente aula!!! 👏👏👏 Deveria ter esse tipo de aula nas faculdades de medicina!!!"</p>
                 <p class="autor-feedback">Aluno da Capacitação</p>
             </div>
+            <div class="card-feedback">
+                <div class="estrelas">★★★★★</div>
+                <p class="texto-feedback">"Gostei bastante. É um tema bem importante. Ele abordou muito bem. Tem uma didática e comunicação muito boas."</p>
+                <p class="autor-feedback">Médico(a) Participante</p>
+            </div>
+            <div class="card-feedback">
+                <div class="estrelas">★★★★★</div>
+                <p class="texto-feedback">"Foi excelente. Analisa muito bem o beneficiário e passou dicas práticas de como lidarmos melhor com eles."</p>
+                <p class="autor-feedback">Médico(a) Participante</p>
+            </div>
+            <div class="card-feedback">
+                <div class="estrelas">★★★★★</div>
+                <p class="texto-feedback">"Uma aula técnica em relação a como contornar as personas habituais dos pacientes. Achei muito bom. Muito articulado e dinâmico."</p>
+                <p class="autor-feedback">Médico(a) Participante</p>
+            </div>
+            <div class="card-feedback">
+                <div class="estrelas">★★★★★</div>
+                <p class="texto-feedback">"Valeu muito! Percebi que a turma ali reunida, inclusive eu claro, devia estar precisando dessa aula."</p>
+                <p class="autor-feedback">Médico(a) Participante</p>
+            </div>
         </div>
 
         <div class="destaque-500">
@@ -706,7 +725,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const faders = document.querySelectorAll('.fade-in');
             
-            // Garantido que o threshold continua 0.01 para não bugar no mobile
             const appearOptions = {
                 threshold: 0.01, 
                 rootMargin: "0px 0px 0px 0px"
@@ -725,7 +743,6 @@
             });
         });
 
-        // Função do modal atualizada para puxar o preço dinamicamente
         function abrirCurso(nome, preco) {
             document.getElementById('tituloModal').innerText = nome;
             document.getElementById('precoModal').innerText = preco;
