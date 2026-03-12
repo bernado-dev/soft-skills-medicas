@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Rafael Souza da Silva | Liderança e Soft Skills na Saúde</title>
     <style>
-        /* ================= ESTILOS GERAIS E CORES (NOVA PALETA PREMIUM) ================= */
+        /* ================= ESTILOS GERAIS E CORES ================= */
         :root {
             --azul-marinho: #0A192F;
             --azul-gradiente: #112B54;
@@ -41,7 +41,7 @@
             transform: translateY(0);
         }
 
-        /* ================= CABEÇALHO (GLASSMORPHISM) ================= */
+        /* ================= CABEÇALHO ================= */
         header { 
             background-color: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(12px);
@@ -60,52 +60,62 @@
         nav a { color: var(--cinza-claro); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s; }
         nav a:hover { color: var(--dourado); } 
 
-        /* ================= SEÇÃO HERO (INÍCIO) ================= */
+        /* ================= SEÇÃO HERO (FOTO DE FRENTE SORRINDO) ================= */
         .secao-destaque-logo { 
             background: linear-gradient(135deg, var(--azul-marinho) 0%, var(--azul-gradiente) 100%);
-            padding: 80px 20px 100px; 
-            text-align: center; 
+            padding: 100px 50px 0; 
             display: flex; 
-            flex-direction: column; 
             align-items: center; 
+            justify-content: center;
+            position: relative;
         }
         
-        .card-logo-flutuante {
-            background-color: rgba(10, 25, 47, 0.7); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(197, 160, 89, 0.3); 
-            padding: 50px 60px;
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            max-width: 900px;
+        .hero-container {
+            max-width: 1200px;
             width: 100%;
-            margin-bottom: -50px;
+            display: flex;
+            align-items: stretch; 
+            justify-content: space-between;
+            gap: 40px;
             position: relative;
             z-index: 10;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+            padding-bottom: 100px; 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: center;
         }
-        
-        .logo-composite { 
-            max-height: 280px; 
-            width: auto; 
-            margin-bottom: 30px; 
-            border-radius: 12px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
-            transition: transform 0.3s ease;
-        }
-        .logo-composite:hover { transform: scale(1.02); }
 
-        .hero-h1-destaque { color: var(--branco); font-size: 34px; margin-bottom: 20px; font-weight: 800; line-height: 1.3; }
-        .hero-p-destaque { font-size: 18px; line-height: 1.6; color: var(--cinza-claro); margin-bottom: 30px; }
+        .selo-destaque { 
+            display: inline-block; 
+            background: rgba(197, 160, 89, 0.1); 
+            border: 1px solid var(--dourado); 
+            color: var(--dourado); 
+            padding: 8px 20px; 
+            border-radius: 30px; 
+            font-size: 14px; 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .hero-h1-destaque { color: var(--branco); font-size: 48px; margin-bottom: 25px; font-weight: 800; line-height: 1.2; text-align: left;}
+        .destaque-txt { color: var(--dourado); }
+        .hero-p-destaque { font-size: 18px; line-height: 1.7; color: var(--cinza-claro); margin-bottom: 40px; text-align: left; }
         
+        .hero-botoes { display: flex; gap: 20px; }
+
         .btn { 
             background-color: var(--dourado); 
             color: var(--branco); 
-            padding: 16px 45px; 
-            border: none; 
+            padding: 16px 40px; 
+            border: 2px solid var(--dourado); 
             border-radius: 8px; 
             font-size: 18px; 
             cursor: pointer; 
@@ -113,37 +123,69 @@
             transition: all 0.3s; 
             text-decoration: none; 
             display: inline-block;
+            text-align: center;
         }
-        .btn:hover { background-color: var(--dourado-hover); transform: translateY(-3px); }
+        .btn:hover { background-color: var(--dourado-hover); border-color: var(--dourado-hover); transform: translateY(-3px); }
         .btn-glow { animation: pulse-gold 2s infinite; } 
 
-        .espacador { height: 60px; background-color: var(--cinza-fundo); }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--branco);
+            border: 2px solid var(--branco);
+            padding: 16px 40px; 
+            border-radius: 8px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.3s; 
+            text-decoration: none; 
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-outline:hover { background-color: var(--branco); color: var(--azul-marinho); transform: translateY(-3px); }
+
+        .hero-visual { flex: 1; display: flex; justify-content: center; align-items: flex-end; }
+        .hero-doctor-img { max-width: 100%; width: 550px; object-fit: cover; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.6)); display: block; }
 
         /* ================= DESTAQUES ================= */
-        .features-bar { display: flex; justify-content: center; gap: 50px; background-color: var(--branco); padding: 30px 50px; border-bottom: 1px solid #E2E8F0; flex-wrap: wrap; position: relative; z-index: 5; }
-        .feature-item { text-align: center; font-size: 16px; color: var(--azul-marinho); }
-        .feature-item strong { display: block; font-size: 20px; color: var(--dourado); margin-bottom: 5px; } 
+        .features-bar { 
+            display: flex; justify-content: center; gap: 60px; background-color: #050C17; padding: 40px 50px; 
+            border-top: 1px solid rgba(197, 160, 89, 0.2); border-bottom: 1px solid rgba(197, 160, 89, 0.2); flex-wrap: wrap; position: relative; z-index: 5; 
+        }
+        .feature-item { text-align: center; font-size: 15px; color: var(--cinza-claro); font-weight: 500; }
+        .feature-item strong { display: block; font-size: 26px; color: var(--dourado); margin-bottom: 8px; font-weight: 800;} 
 
         /* ================= PROBLEMA E CIÊNCIA ================= */
-        .problema-cientifico { padding: 80px 50px; background-color: var(--azul-marinho); color: var(--branco); text-align: center; }
-        .problema-cientifico h2 { font-size: 38px; margin-bottom: 20px; color: var(--branco); line-height: 1.3; }
-        .grid-problema { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1000px; margin: 50px auto 0; text-align: left; }
-        .card-problema { background-color: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 16px; border-left: 5px solid var(--dourado); transition: transform 0.3s;} 
+        .problema-cientifico { padding: 100px 50px; background-color: var(--cinza-fundo); color: var(--azul-marinho); }
+        .problema-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
+        .problema-imagem { flex: 1; }
+        .img-apontando { width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); border: 2px solid var(--dourado); }
+        .problema-textos { flex: 1.2; text-align: left; }
+        .problema-textos h2 { font-size: 38px; margin-bottom: 40px; line-height: 1.3; }
+        
+        .grid-problema { display: grid; gap: 30px; }
+        .card-problema { background-color: var(--branco); padding: 35px; border-radius: 16px; border-left: 5px solid var(--dourado); transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05);} 
         .card-problema:hover { transform: translateY(-5px); }
-        .card-problema h3 { font-size: 24px; margin-bottom: 20px; color: var(--branco); }
-        .card-problema p { font-size: 16px; line-height: 1.8; color: var(--cinza-claro); }
+        .card-problema h3 { font-size: 22px; margin-bottom: 15px; color: var(--azul-marinho); }
+        .card-problema p { font-size: 16px; line-height: 1.8; color: var(--cinza-escuro); }
 
         /* ================= MÉTODO PRÁTICO ================= */
-        .metodo-pratico { padding: 80px 50px; background-color: var(--branco); }
-        .metodo-pratico h2 { text-align: center; color: var(--azul-marinho); font-size: 36px; margin-bottom: 50px; }
-        .grid-metodo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card-metodo { background-color: var(--cinza-fundo); border-radius: 12px; border: 1px solid #E2E8F0; overflow: hidden; transition: all 0.3s; }
-        .card-metodo:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-color: var(--dourado); } 
-        .card-header-metodo { background-color: var(--azul-marinho); color: var(--branco); padding: 20px; display: flex; align-items: center; gap: 15px; }
-        .card-icone-metodo { font-size: 28px; }
-        .card-metodo h4 { font-size: 20px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px;}
+        .metodo-pratico { padding: 100px 50px; background-color: var(--azul-marinho); color: var(--branco); }
+        .metodo-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: row-reverse; align-items: center; gap: 60px; }
+        .metodo-imagem { flex: 1; }
+        .img-palestra { width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 2px solid var(--dourado); }
+        
+        .metodo-textos { flex: 1.2; }
+        .metodo-textos h2 { font-size: 38px; margin-bottom: 40px; color: var(--branco); line-height: 1.3; }
+        .grid-metodo { display: grid; gap: 25px; }
+        
+        .card-metodo { background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(197, 160, 89, 0.2); overflow: hidden; transition: all 0.3s; }
+        .card-metodo:hover { transform: translateY(-5px); border-color: var(--dourado); background-color: rgba(255, 255, 255, 0.08); } 
+        .card-header-metodo { background-color: rgba(0,0,0,0.2); padding: 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
+        .card-icone-metodo { font-size: 24px; }
+        .card-metodo h4 { font-size: 18px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px; color: var(--dourado);}
         .card-body-metodo { padding: 25px; }
-        .card-metodo p { font-size: 16px; line-height: 1.7; color: var(--cinza-escuro); margin: 0; }
+        .card-metodo p { font-size: 15px; line-height: 1.7; color: var(--cinza-claro); margin: 0; }
 
         /* ================= PÚBLICO ALVO ================= */
         .publico-alvo { padding: 80px 50px; background-color: var(--cinza-fundo); text-align: center; }
@@ -154,28 +196,40 @@
         .item-publico p { font-size: 16px; line-height: 1.6; color: var(--cinza-escuro); }
 
         /* ================= FECHAMENTO CTA ================= */
-        .cta-fechamento { padding: 60px 50px; background-color: var(--azul-marinho); color: var(--branco); text-align: center; }
+        .cta-fechamento { padding: 60px 50px; background-color: var(--azul-marinho); color: var(--branco); text-align: center; border-top: 1px solid rgba(197,160,89, 0.3); }
         .cta-fechamento h3 { font-size: 28px; margin-bottom: 20px; }
         .cta-fechamento p { font-size: 18px; color: var(--cinza-claro); max-width: 700px; margin: 0 auto 30px; font-style: italic; }
 
-        /* ================= CURSOS (PLANOS ATUALIZADOS) ================= */
-        .cursos { padding: 80px 50px; background-color: var(--branco); }
+        /* ================= CURSOS ================= */
+        .cursos { padding: 100px 50px; background-color: var(--cinza-fundo); }
         .cursos-header { text-align: center; margin-bottom: 50px; }
-        .cursos h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 10px; }
-        .grid-cursos { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        .card { background-color: var(--cinza-fundo); border-radius: 12px; padding: 40px 30px 30px; width: 400px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #E2E8F0; transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); border-color: var(--dourado); }
-        .card h3 { color: var(--azul-marinho); margin-bottom: 15px; font-size: 24px; border-bottom: 2px solid var(--dourado); padding-bottom: 10px; display: inline-block;}
-        .card p { font-size: 15px; margin-bottom: 20px; line-height: 1.6; color: #4A5568; }
-        .preco-curso { font-size: 28px; font-weight: 800; color: var(--dourado); margin-bottom: 25px; }
-        .btn-curso { background-color: var(--branco); color: var(--azul-marinho); padding: 14px 20px; border: 2px solid var(--azul-marinho); border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 16px; margin-top: auto; }
-        .btn-curso:hover { background-color: var(--azul-marinho); color: var(--branco); border-color: var(--azul-marinho); }
+        .cursos h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 15px; }
+        .cursos-sub { color: var(--cinza-escuro); font-size: 18px; margin-bottom: 40px;}
         
-        .card-premium { border: 2px solid var(--dourado); background-color: #FDFBF7; position: relative; }
-        .selo-premium { position: absolute; top: -15px; right: 20px; background-color: var(--dourado); color: var(--branco); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
+        .grid-cursos { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;}
+        
+        .card { 
+            background: linear-gradient(180deg, #112B54 0%, #0A192F 100%);
+            border-radius: 16px; padding: 40px; width: 420px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+            border: 1px solid rgba(10,25,47,0.1); transition: transform 0.4s, border-color 0.4s; 
+            display: flex; flex-direction: column; justify-content: space-between; color: var(--branco);
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--dourado); }
+        .card h3 { color: var(--branco); margin-bottom: 15px; font-size: 26px; border-bottom: 2px solid var(--dourado); padding-bottom: 15px; }
+        .card p { font-size: 16px; margin-bottom: 30px; line-height: 1.6; color: var(--cinza-claro); }
+        .preco-curso { font-size: 32px; font-weight: 800; color: var(--dourado); margin-bottom: 30px; display: flex; align-items: center; gap: 10px;}
+        .preco-curso span { font-size: 14px; color: var(--cinza-claro); font-weight: 400; text-transform: uppercase; letter-spacing: 1px;}
+        
+        .btn-curso { background-color: transparent; color: var(--branco); padding: 16px; border: 2px solid var(--branco); border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; font-size: 18px; margin-top: auto; }
+        .btn-curso:hover { background-color: var(--branco); color: var(--azul-marinho); }
+        
+        .card-premium { border: 2px solid var(--dourado); position: relative; }
+        .selo-premium { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: var(--dourado); color: var(--branco); padding: 6px 20px; border-radius: 20px; font-size: 13px; font-weight: 800; letter-spacing: 1px; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+        .card-premium .btn-curso { background-color: var(--dourado); border-color: var(--dourado); color: var(--branco); }
+        .card-premium .btn-curso:hover { background-color: var(--dourado-hover); border-color: var(--dourado-hover); }
 
         /* ================= IMPACTO E PROVA SOCIAL ================= */
-        .impacto { padding: 80px 50px; background-color: var(--cinza-fundo); text-align: center; border-bottom: 1px solid #E2E8F0; }
+        .impacto { padding: 80px 50px; background-color: var(--branco); text-align: center; border-bottom: 1px solid #E2E8F0; }
         .impacto h2 { color: var(--azul-marinho); font-size: 36px; margin-bottom: 15px; }
         .impacto-sub { color: var(--cinza-escuro); font-size: 18px; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; }
         
@@ -184,7 +238,7 @@
         .img-impacto:hover { transform: scale(1.05); z-index: 2; position: relative; }
         
         .feedbacks { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
-        .card-feedback { background-color: var(--branco); padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; flex: 1; min-width: 300px; border-left: 5px solid var(--dourado); transition: transform 0.3s; } 
+        .card-feedback { background-color: var(--cinza-fundo); padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; flex: 1; min-width: 300px; border-left: 5px solid var(--dourado); transition: transform 0.3s; } 
         .card-feedback:hover { transform: translateY(-5px); }
         .estrelas { color: var(--amarelo-estrela); font-size: 20px; margin-bottom: 15px; letter-spacing: 2px; }
         .texto-feedback { font-size: 16px; font-style: italic; color: var(--cinza-escuro); line-height: 1.6; margin-bottom: 15px; }
@@ -193,7 +247,7 @@
 
         /* ================= SOBRE O PROFESSOR ================= */
         .sobre-professor { 
-            padding: 120px 50px; 
+            padding: 100px 50px; 
             background-color: var(--branco); 
             color: var(--cinza-escuro); 
             border-top: 1px solid #E2E8F0;
@@ -207,145 +261,55 @@
             margin: 0 auto; 
             text-align: center;
         }
-        
-        .container-sobre-novo h2 { 
-            font-size: 36px; 
-            color: var(--azul-marinho); 
-            margin-bottom: 40px; 
-        }
 
-        .curriculo-elite { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 15px; 
-            max-width: 950px; 
-            margin: 0 auto 60px auto; 
+        .perfil-enxuto {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center; 
+            border: 4px solid var(--dourado);
+            box-shadow: 0 15px 30px rgba(10, 25, 47, 0.2);
+            margin: 0 auto 30px auto;
+            display: block;
+            transition: transform 0.4s;
         }
+        .perfil-enxuto:hover { transform: scale(1.05); }
+        
+        .container-sobre-novo h2 { font-size: 36px; color: var(--azul-marinho); margin-bottom: 40px; }
+
+        .curriculo-elite { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 950px; margin: 0 auto 50px auto; }
         .item-curriculo { 
-            background-color: var(--cinza-fundo); 
-            color: var(--azul-marinho); 
-            padding: 12px 22px; 
-            border-radius: 30px; 
-            font-weight: 700; 
-            font-size: 14px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-            border: 1px solid #E2E8F0;
+            background-color: var(--cinza-fundo); color: var(--azul-marinho); padding: 12px 22px; 
+            border-radius: 30px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 10px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #E2E8F0;
         }
         .item-curriculo span { font-size: 18px; }
         
-        .texto-sobre-novo { 
-            max-width: 800px; 
-            margin-bottom: 70px; 
-        }
-        .texto-sobre-novo p { 
-            font-size: 16px; 
-            line-height: 1.8; 
-            margin-bottom: 15px; 
-        }
+        .texto-sobre-novo { max-width: 800px; margin-bottom: 50px; }
+        .texto-sobre-novo p { font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
         .citacao { 
-            max-width: 800px; 
-            margin: 40px auto 0 auto; 
-            font-style: italic; 
-            border-left: 4px solid var(--dourado); 
-            padding-left: 20px; 
-            color: var(--azul-claro); 
-            font-size: 18px; 
-            line-height: 1.6; 
-            font-weight: 500;
-            text-align: left; 
-        }
-
-        .arquitetura-fotos-container { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 50px; 
-            width: 100%; 
-            max-width: 650px; 
-            margin: 0 auto; 
-        }
-        .img-arquitetural { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 12px; 
-            border: 3px solid var(--branco); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .img-arquitetural:hover { 
-            transform: scale(1.03) translateY(-5px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            max-width: 800px; margin: 30px auto 0 auto; font-style: italic; border-left: 4px solid var(--dourado); 
+            padding-left: 20px; color: var(--azul-claro); font-size: 18px; line-height: 1.6; font-weight: 500; text-align: left; 
         }
 
         /* ================= ACERVO CIENTÍFICO E PROFISSIONAL ================= */
         .acervo-cientifico {
-            width: 100%;
-            max-width: 1000px;
-            margin: 80px auto 0 auto;
-            text-align: left;
-            background-color: var(--cinza-fundo);
-            padding: 50px;
-            border-radius: 20px;
-            border: 1px solid #E2E8F0;
+            width: 100%; max-width: 1000px; margin: 40px auto 0 auto; text-align: left;
+            background-color: var(--cinza-fundo); padding: 50px; border-radius: 20px; border: 1px solid #E2E8F0;
         }
         .acervo-cientifico h3 {
-            color: var(--azul-marinho);
-            font-size: 28px;
-            margin-bottom: 30px;
-            border-bottom: 3px solid var(--dourado); 
-            padding-bottom: 10px;
-            display: inline-block;
+            color: var(--azul-marinho); font-size: 28px; margin-bottom: 30px;
+            border-bottom: 3px solid var(--dourado); padding-bottom: 10px; display: inline-block;
         }
-        .acervo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        .acervo-box {
-            background-color: var(--branco);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid #edf2f7;
-        }
-        .acervo-box h4 {
-            color: var(--dourado); 
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .acervo-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .acervo-list li {
-            font-size: 14px;
-            color: var(--cinza-escuro);
-            margin-bottom: 15px;
-            padding-left: 20px;
-            position: relative;
-            line-height: 1.6;
-        }
-        .acervo-list li::before {
-            content: "•";
-            color: var(--azul-marinho);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 18px;
-        }
+        .acervo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .acervo-box { background-color: var(--branco); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #edf2f7; }
+        .acervo-box h4 { color: var(--dourado); font-size: 18px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .acervo-list { list-style: none; padding: 0; margin: 0; }
+        .acervo-list li { font-size: 14px; color: var(--cinza-escuro); margin-bottom: 15px; padding-left: 20px; position: relative; line-height: 1.6; }
+        .acervo-list li::before { content: "•"; color: var(--azul-marinho); font-weight: bold; position: absolute; left: 0; font-size: 18px; }
         
-        .scroll-box {
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 15px;
-        }
+        .scroll-box { max-height: 400px; overflow-y: auto; padding-right: 15px; }
         .scroll-box::-webkit-scrollbar { width: 8px; }
         .scroll-box::-webkit-scrollbar-track { background: #F7FAFC; border-radius: 4px; }
         .scroll-box::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 4px; }
@@ -360,67 +324,48 @@
 
         /* ================= WHATSAPP FLUTUANTE ================= */
         .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: all 0.3s ease;
+            position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white;
+            width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: all 0.3s ease;
         }
         .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
         .whatsapp-icon { width: 38px; height: 38px; }
 
         /* ================= RESPONSIVIDADE ================= */
+        @media (max-width: 950px) {
+            .hero-container, .problema-container, .metodo-container { flex-direction: column; text-align: center; gap: 30px;}
+            .hero-content, .problema-textos, .metodo-textos { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 0;}
+            .selo-destaque { align-self: center; }
+            .hero-h1-destaque, .hero-p-destaque, .problema-textos h2, .metodo-textos h2 { text-align: center; }
+            .hero-h1-destaque { font-size: 36px; }
+            .hero-botoes { flex-direction: column; width: 100%; }
+            .btn, .btn-outline { width: 100%; }
+            .hero-doctor-img { width: 380px; }
+            .img-apontando, .img-palestra { width: 90%; }
+            .secao-destaque-logo { padding-bottom: 0; }
+        }
+
         @media (max-width: 768px) {
             header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
             nav a { margin-left: 0; font-size: 14px; }
             
-            .secao-destaque-logo { padding: 40px 20px 60px; }
-            .card-logo-flutuante { padding: 30px 20px; }
-            .logo-composite { max-height: 200px; margin-bottom: 25px; }
-            .hero-h1-destaque { font-size: 26px; }
+            .secao-destaque-logo { padding: 80px 20px 0; }
+            .problema-cientifico, .metodo-pratico { padding: 60px 20px; }
+            .publico-alvo, .cursos, .impacto, .sobre-professor { padding: 50px 20px; }
             
-            .publico-alvo, .cursos, .impacto { padding: 50px 20px; }
-            .sobre-professor { padding: 80px 20px; } 
-            
-            .problema-cientifico { padding: 60px 20px; }
-            .problema-cientifico h2 { font-size: 28px; margin-bottom: 30px;}
+            .problema-cientifico h2, .metodo-pratico h2 { font-size: 28px; margin-bottom: 30px;}
             .card-problema { padding: 25px; }
             
-            .metodo-pratico { padding: 60px 20px; }
-            .metodo-pratico h2 { font-size: 28px; margin-bottom: 30px; }
+            .features-bar { padding: 30px 20px; gap: 20px; flex-direction: column; }
             
-            .features-bar { padding: 20px; gap: 20px; flex-direction: column; }
-            .feature-item { font-size: 15px; }
-            
-            .container-sobre-novo { gap: 0; } 
             .container-sobre-novo h2 { font-size: 28px; margin-bottom: 30px; }
-            
             .curriculo-elite { flex-direction: column; align-items: stretch; padding: 0 10px; gap: 12px; margin-bottom: 40px;}
             .item-curriculo { justify-content: flex-start; font-size: 13px; padding: 15px 20px;}
-
-            .texto-sobre-novo { margin-bottom: 50px; }
-            
-            .arquitetura-fotos-container { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px; 
-                max-width: 100%; 
-                margin-bottom: 0; 
-            }
 
             .acervo-cientifico { padding: 30px 20px; margin-top: 50px; }
             .acervo-cientifico h3 { font-size: 22px; }
             .acervo-grid { grid-template-columns: 1fr; gap: 20px; }
-
             .citacao { text-align: left; font-size: 16px; margin-top: 30px;}
             
             .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
@@ -444,52 +389,72 @@
     </header>
 
     <section class="secao-destaque-logo fade-in" id="inicio">
-        <div class="card-logo-flutuante">
-            <img src="logo2.png.png" alt="Dr. Rafael Souza | Liderança & Soft Skills Médicas" class="logo-composite">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="selo-destaque">O Futuro da Medicina</div>
+                <h1 class="hero-h1-destaque">O verdadeiro diferencial competitivo continuará sendo profundamente <span class="destaque-txt">humano.</span></h1>
+                <p class="hero-p-destaque">Em um mundo onde a inteligência artificial avança rapidamente, a excelência clínica não se constrói apenas com conhecimento técnico. Desenvolva as soft skills que formam o alicerce da nova liderança na saúde.</p>
+                <div class="hero-botoes">
+                    <button class="btn btn-glow" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
+                    <button class="btn-outline" onclick="document.getElementById('aprender').scrollIntoView({behavior: 'smooth'})">Conhecer o Método</button>
+                </div>
+            </div>
             
-            <h1 class="hero-h1-destaque">O verdadeiro diferencial competitivo continuará sendo profundamente humano.</h1>
-            <p class="hero-p-destaque">Em um mundo onde a inteligência artificial avança rapidamente, a excelência clínica não se constrói apenas com conhecimento técnico. A prática médica é, antes de tudo, uma prática humana. Desenvolva as soft skills que formam o alicerce da nova liderança.</p>
-            <button class="btn btn-glow" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
+            <div class="hero-visual">
+                <img src="rafael-frente.jpg.png" alt="Dr. Rafael Souza" class="hero-doctor-img">
+            </div>
         </div>
     </section>
 
-    <div class="espacador"></div>
-
     <div class="features-bar fade-in">
-        <div class="feature-item"><strong>💻 100% Online</strong> Estude onde e quando quiser</div>
-        <div class="feature-item"><strong>⏱️ +12 Horas</strong> De aulas práticas e teoria</div>
-        <div class="feature-item"><strong>📜 Certificado</strong> Reconhecido no mercado</div>
-        <div class="feature-item"><strong>♾️ Acesso</strong> Vitalício ao conteúdo</div>
+        <div class="feature-item"><strong>100%</strong> Online e Prático</div>
+        <div class="feature-item"><strong>+12h</strong> De Conteúdo</div>
+        <div class="feature-item"><strong>MEC</strong> Certificado</div>
+        <div class="feature-item"><strong>∞</strong> Acesso Vitalício</div>
     </div>
 
     <section class="problema-cientifico fade-in">
-        <h2>A sua técnica salva vidas.<br><span style="color: var(--dourado);">A sua comunicação salva a sua carreira.</span></h2>
-        <div class="grid-problema">
-            <div class="card-problema">
-                <h3>⚖️ O Risco Invisível do Consultório</h3>
-                <p>Estudos comprovam que uma parcela significativa das reclamações, processos éticos e judicializações na saúde não nascem de falhas técnicas, mas sim de <strong>falhas de comunicação e ausência de empatia</strong>. O paciente raramente processa o médico em quem ele confia e que o escuta ativamente.</p>
+        <div class="problema-container">
+            <div class="problema-imagem">
+                <img src="rafael-frente2.jpg.png.png" alt="Dr. Rafael Souza Apontando" class="img-apontando">
             </div>
-            <div class="card-problema">
-                <h3>🔬 A Ciência da Empatia</h3>
-                <p><em>Soft skill</em> não é apenas "ser legal", é resultado clínico mensurável. Pesquisas internacionais demonstram que médicos com altos níveis de empatia garantem maior adesão ao tratamento, apresentando impactos reais na cura, como a <strong>melhora no controle glicêmico de pacientes diabéticos</strong>.</p>
+            <div class="problema-textos">
+                <h2>A sua técnica salva vidas.<br><span style="color: var(--dourado);">A sua comunicação salva a sua carreira.</span></h2>
+                <div class="grid-problema">
+                    <div class="card-problema">
+                        <h3>⚖️ O Risco Invisível do Consultório</h3>
+                        <p>Estudos comprovam que uma parcela significativa das reclamações, processos éticos e judicializações na saúde não nascem de falhas técnicas, mas sim de <strong>falhas de comunicação e ausência de empatia</strong>. O paciente raramente processa o médico em quem ele confia e que o escuta ativamente.</p>
+                    </div>
+                    <div class="card-problema">
+                        <h3>🔬 A Ciência da Empatia</h3>
+                        <p><em>Soft skill</em> não é apenas "ser legal", é resultado clínico mensurável. Pesquisas internacionais demonstram que médicos com altos níveis de empatia garantem maior adesão ao tratamento, apresentando impactos reais na cura, como a <strong>melhora no controle glicêmico de pacientes diabéticos</strong>.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="metodo-pratico fade-in" id="aprender">
-        <h2>Um Método Aplicável e Direto ao Ponto</h2>
-        <div class="grid-metodo">
-            <div class="card-metodo">
-                <div class="card-header-metodo"><div class="card-icone-metodo">🎭</div><h4>As 4 Personas do Adoecimento</h4></div>
-                <div class="card-body-metodo"><p>Aprenda a identificar e desarmar pacientes e familiares em intenso estado de vulnerabilidade emocional: a Persona Agressiva, a Passivo-Agressiva, a Controladora e a Exausta.</p></div>
+        <div class="metodo-container">
+            <div class="metodo-imagem">
+                <img src="rafael-palestra.jpg.png" alt="Dr. Rafael Palestrando" class="img-palestra">
             </div>
-            <div class="card-metodo">
-                <div class="card-header-metodo"><div class="card-icone-metodo">⚙️</div><h4>O Algoritmo de 5 Etapas</h4></div>
-                <div class="card-body-metodo"><p>Um passo a passo exato e testado para a gestão clínica e resolução de conflitos: Observação, Escuta Ativa, Validação Emocional, Explicação Clara e Busca Conjunta por Soluções.</p></div>
-            </div>
-            <div class="card-metodo">
-                <div class="card-header-metodo"><div class="card-icone-metodo">🛡️</div><h4>Blindagem Profissional</h4></div>
-                <div class="card-body-metodo"><p>As <em>Hard Skills</em> (conhecimento técnico) garantem a sua entrada no mercado, mas são as <em>Soft Skills</em> que sustentam a sua liderança e o protegem no complexo ambiente da saúde corporativa.</p></div>
+            <div class="metodo-textos">
+                <h2>Um Método Aplicável e Direto ao Ponto</h2>
+                <div class="grid-metodo">
+                    <div class="card-metodo">
+                        <div class="card-header-metodo"><div class="card-icone-metodo">🎭</div><h4>As 4 Personas do Adoecimento</h4></div>
+                        <div class="card-body-metodo"><p>Aprenda a identificar e desarmar pacientes e familiares em intenso estado de vulnerabilidade emocional: a Persona Agressiva, a Passivo-Agressiva, a Controladora e a Exausta.</p></div>
+                    </div>
+                    <div class="card-metodo">
+                        <div class="card-header-metodo"><div class="card-icone-metodo">⚙️</div><h4>O Algoritmo de 5 Etapas</h4></div>
+                        <div class="card-body-metodo"><p>Um passo a passo exato e testado para a gestão clínica e resolução de conflitos: Observação, Escuta Ativa, Validação Emocional, Explicação Clara e Busca Conjunta por Soluções.</p></div>
+                    </div>
+                    <div class="card-metodo">
+                        <div class="card-header-metodo"><div class="card-icone-metodo">🛡️</div><h4>Blindagem Profissional</h4></div>
+                        <div class="card-body-metodo"><p>As <em>Hard Skills</em> (conhecimento técnico) garantem a sua entrada no mercado, mas são as <em>Soft Skills</em> que sustentam a sua liderança e o protegem no complexo ambiente corporativo.</p></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -515,27 +480,36 @@
     <section class="cta-fechamento fade-in">
         <h3>Assuma o protagonismo da sua própria história.</h3>
         <p>"Não espere o momento perfeito. Ele nasce quando você decide agir. O sonho que te move é bem maior que as críticas. Bora sair do lugar!"</p>
-        <button class="btn btn-glow" style="background-color: var(--dourado); color: var(--branco);" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
+        <button class="btn btn-glow" style="background-color: var(--dourado); color: var(--branco); border-color: var(--dourado);" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
     </section>
 
     <section class="cursos fade-in" id="cursos">
         <div class="cursos-header">
             <h2>Nossas Formações</h2>
+            <p class="cursos-sub">Escolha o formato que melhor se adapta ao seu momento profissional.</p>
         </div>
         <div class="grid-cursos">
             <div class="card">
-                <h3>Formação Essencial (Gravada)</h3>
-                <p>Acesso vitalício à plataforma. Aprenda no seu próprio ritmo com módulos teóricos e práticos gravados focados em resolução de conflitos e comunicação clínica.</p>
-                <div class="preco-curso">R$ 1.999,90</div>
-                <button class="btn-curso" onclick="abrirCurso('Formação Essencial (Gravada)', 'R$ 1.999,90')">Garantir Vaga</button>
+                <div>
+                    <h3>Formação Essencial</h3>
+                    <p>Acesso vitalício à plataforma. Aprenda no seu próprio ritmo com módulos teóricos e práticos gravados focados em resolução de conflitos e comunicação clínica.</p>
+                </div>
+                <div>
+                    <div class="preco-curso">R$ 1.999,90 <span>/ Gravado</span></div>
+                    <button class="btn-curso" onclick="abrirCurso('Formação Essencial (Gravada)', 'R$ 1.999,90')">Garantir Vaga</button>
+                </div>
             </div>
             
             <div class="card card-premium">
-                <div class="selo-premium">MAIS ESCOLHIDO</div>
-                <h3>Mentoria Premium (Ao Vivo)</h3>
-                <p>Tudo do plano Essencial + Encontros exclusivos ao vivo com o Dr. Rafael Souza para discussão de casos reais, networking de alto nível e mentoria direcionada.</p>
-                <div class="preco-curso">R$ 3.499,90</div>
-                <button class="btn-curso btn-glow" style="background-color: var(--dourado); color: var(--branco); border-color: var(--dourado);" onclick="abrirCurso('Mentoria Premium (Ao Vivo)', 'R$ 3.499,90')">Aplicar para a Mentoria</button>
+                <div class="selo-premium">MÉTODO MAIS ESCOLHIDO</div>
+                <div>
+                    <h3>Mentoria Premium</h3>
+                    <p>Tudo do plano Essencial + Encontros exclusivos ao vivo com o Dr. Rafael Souza para discussão de casos reais, networking de alto nível e mentoria direcionada.</p>
+                </div>
+                <div>
+                    <div class="preco-curso">R$ 3.499,90 <span>/ Ao Vivo</span></div>
+                    <button class="btn-curso btn-glow" onclick="abrirCurso('Mentoria Premium (Ao Vivo)', 'R$ 3.499,90')">Aplicar para a Mentoria</button>
+                </div>
             </div>
         </div>
     </section>
@@ -600,6 +574,9 @@
 
     <section class="sobre-professor fade-in" id="sobre">
         <div class="container-sobre-novo">
+            
+            <img src="foto1.png.jpeg" alt="Dr. Rafael Souza" class="perfil-enxuto">
+            
             <h2>Conheça o Dr. Rafael Souza da Silva</h2>
 
             <div class="curriculo-elite">
@@ -617,13 +594,6 @@
                 <div class="citacao">
                     "A excelência clínica não se constrói apenas com conhecimento técnico, mas também com comunicação, empatia e escuta ativa. Um ambiente de trabalho saudável transforma o clima organizacional. Cuidar de quem cuida não é clichê. É a nossa marca!"
                 </div>
-            </div>
-
-            <div class="arquitetura-fotos-container">
-                <img src="foto1.png.jpeg" alt="Dr. Rafael Souza 1" class="img-arquitetural">
-                <img src="foto3.png.jpeg" alt="Dr. Rafael Souza 3" class="img-arquitetural">
-                <img src="foto2.png.jpeg" alt="Dr. Rafael Souza 2" class="img-arquitetural">
-                <img src="foto4.png.jpeg" alt="Dr. Rafael Souza 4" class="img-arquitetural">
             </div>
 
             <div class="acervo-cientifico fade-in">
@@ -711,7 +681,7 @@
             <p style="color: var(--cinza-escuro); margin-bottom: 20px;">Módulos liberados imediatamente após a confirmação da inscrição.</p>
             <div id="precoModal" style="font-size: 32px; font-weight: 800; color: var(--dourado); margin: 20px 0; text-align: center;">R$ 0,00</div>
             
-            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn btn-glow" style="display: block; width: 100%; background-color: var(--dourado); color: var(--branco); padding: 20px; font-size: 20px; font-weight: bold; text-align: center; text-decoration: none; border-radius: 8px;">Finalizar Matrícula</a>
+            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn btn-glow" style="display: block; width: 100%; background-color: var(--dourado); color: var(--branco); padding: 20px; border: none; font-size: 20px; font-weight: bold; text-align: center; text-decoration: none; border-radius: 8px;">Finalizar Matrícula</a>
         </div>
     </div>
 
