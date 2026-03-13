@@ -12,17 +12,18 @@
     <style>
         /* ================= ESTILOS GERAIS E CORES HIGH-TICKET ================= */
         :root {
-            --bg-profundo: #02060F;
+            --bg-profundo: #060D18; 
             --azul-marinho: #0B192C;
-            --azul-card: #0D1B2A;
-            --dourado: #E5C07B; 
-            --dourado-hover: #F3D38D; 
-            --dourado-rgba: rgba(229, 192, 123, 0.4); 
-            --dourado-brilho: rgba(229, 192, 123, 0.8);
+            --azul-card: #0A1526;
+            --dourado: #D4AF37; 
+            --dourado-claro: #F9E596;
+            --dourado-escuro: #AA8222;
+            --dourado-rgba: rgba(212, 175, 55, 0.4); 
+            --dourado-brilho: rgba(212, 175, 55, 0.8);
             --branco: #FFFFFF;
             --texto-claro: #F8FAFC; 
-            --texto-mutado: #CBD5E1; 
-            --borda-suave: rgba(229, 192, 123, 0.15);
+            --texto-mutado: #94A3B8; 
+            --borda-suave: rgba(212, 175, 55, 0.15);
             --amarelo-estrela: #FBBF24;
         }
 
@@ -38,108 +39,149 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* SCROLLBAR PERSONALIZADA */
+        /* SCROLLBAR PERSONALIZADA LUXO */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-profundo); }
-        ::-webkit-scrollbar-thumb { background: rgba(229, 192, 123, 0.3); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--dourado); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--dourado-escuro), var(--dourado), var(--dourado-escuro)); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--dourado-claro); }
         
-        /* FONTE DOS TÍTULOS (PLAYFAIR DISPLAY) */
+        /* FONTE DOS TÍTULOS */
         h1, h2, h3, h4, h5, h6, .nome-professor, .destaque-txt, .citacao {
             font-family: 'Playfair Display', serif;
         }
 
-        /* TÍTULOS DE SEÇÃO COM GRADIENTE SUTIL */
-        section h2 {
-            background: linear-gradient(90deg, var(--branco) 0%, #CBD5E1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* DIVISÓRIAS PREMIUM (GRADIENTE FADE) */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--dourado-rgba), transparent);
+            width: 100%;
+            border: none;
         }
 
         html { scroll-behavior: smooth; }
 
         /* ================= ANIMAÇÕES E EFEITOS ================= */
         @keyframes pulse-luminous {
-            0% { box-shadow: 0 0 10px var(--dourado-rgba), 0 0 20px var(--dourado-rgba); }
-            50% { box-shadow: 0 0 20px var(--dourado-brilho), 0 0 40px var(--dourado-rgba); }
-            100% { box-shadow: 0 0 10px var(--dourado-rgba), 0 0 20px var(--dourado-rgba); }
+            0% { box-shadow: 0 0 15px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.2); }
+            50% { box-shadow: 0 0 30px rgba(212,175,55,0.8), 0 0 50px rgba(212,175,55,0.4); transform: scale(1.02); }
+            100% { box-shadow: 0 0 15px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.2); }
         }
 
         @keyframes breathe {
-            0% { transform: scale(1); opacity: 0.2; }
-            50% { transform: scale(1.1); opacity: 0.4; }
-            100% { transform: scale(1); opacity: 0.2; }
+            0% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.35; }
+            100% { transform: scale(1); opacity: 0.15; }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+        @keyframes float-3d {
+            0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); filter: drop-shadow(0 25px 45px rgba(0,0,0,0.9)); }
+            33% { transform: translateY(-15px) rotateX(2deg) rotateY(-2deg); filter: drop-shadow(0 35px 55px rgba(0,0,0,0.7)); }
+            66% { transform: translateY(-5px) rotateX(-2deg) rotateY(2deg); filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8)); }
+            100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); filter: drop-shadow(0 25px 45px rgba(0,0,0,0.9)); }
         }
 
-        @keyframes shimmer-text {
-            to { background-position: 200% center; }
+        @keyframes foil-shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         @keyframes shine-sweep {
-            0% { left: -100%; }
-            20% { left: 200%; }
-            100% { left: 200%; }
+            0% { left: -100%; top: -100%; }
+            20% { left: 200%; top: 200%; }
+            100% { left: 200%; top: 200%; }
         }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        @keyframes particle-rise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; transform: translateY(80vh) scale(1); }
+            90% { opacity: 1; transform: translateY(20vh) scale(1); }
+            100% { transform: translateY(0) scale(0); opacity: 0; }
         }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* DELAYS PARA EFEITO CASCATA NOS GRIDS */
-        .delay-1.visible { transition-delay: 0.1s; }
-        .delay-2.visible { transition-delay: 0.3s; }
-        .delay-3.visible { transition-delay: 0.5s; }
+        /* Animação inicial apenas para o Hero */
+        .load-in {
+            animation: loadFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes loadFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* LUZES DE AMBIENTE (GLOW EFFECTS) */
+        /* ================= EFEITOS DE FUNDO ================= */
+        /* Luzes Ambientes */
         .ambient-glow {
             position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, var(--dourado-rgba) 0%, transparent 60%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
             border-radius: 50%;
-            filter: blur(90px);
-            z-index: -1;
+            filter: blur(100px);
+            z-index: -2;
             pointer-events: none;
-            opacity: 0.3;
-            animation: breathe 10s infinite ease-in-out;
+            animation: breathe 12s infinite ease-in-out;
         }
-        .glow-1 { top: -150px; left: -250px; background: radial-gradient(circle, rgba(17,43,84,0.7) 0%, transparent 70%); animation-delay: 0s; }
-        .glow-2 { top: 35%; right: -300px; animation-delay: 3s; }
-        .glow-3 { bottom: 5%; left: -200px; animation-delay: 5s; }
+        .glow-1 { top: -200px; left: -300px; background: radial-gradient(circle, rgba(10,20,35,0.9) 0%, transparent 70%); animation-delay: 0s; }
+        .glow-2 { top: 40%; right: -400px; animation-delay: 4s; }
+        .glow-3 { bottom: 0%; left: -200px; animation-delay: 8s; }
+
+        /* Partículas (Pó de Ouro) */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: var(--dourado-claro);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--dourado-claro), 0 0 20px var(--dourado);
+            animation: particle-rise linear infinite;
+        }
+        .p1 { left: 10%; animation-duration: 15s; animation-delay: 0s; }
+        .p2 { left: 30%; width: 3px; height: 3px; animation-duration: 22s; animation-delay: 5s; }
+        .p3 { left: 50%; animation-duration: 18s; animation-delay: 2s; }
+        .p4 { left: 70%; width: 4px; height: 4px; animation-duration: 25s; animation-delay: 8s; opacity: 0.5;}
+        .p5 { left: 90%; animation-duration: 19s; animation-delay: 1s; }
+        .p6 { left: 20%; animation-duration: 20s; animation-delay: 12s; }
+        .p7 { left: 80%; width: 1px; height: 1px; animation-duration: 14s; animation-delay: 7s; }
 
         /* ================= CABEÇALHO ================= */
         header { 
-            background: rgba(2, 6, 15, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 20px 50px; 
+            background: rgba(6, 13, 24, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 20px 60px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             position: sticky; 
             top: 0; 
             z-index: 100; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         .logo { display: flex; align-items: center; }
-        .nome-professor { font-size: 26px; font-weight: 700; color: var(--branco); margin: 0; letter-spacing: 1.5px; }
-        .nome-professor span { color: var(--dourado); font-style: italic; }
-        nav a { color: var(--texto-claro); text-decoration: none; margin-left: 35px; font-weight: 500; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s; }
-        nav a:hover { color: var(--dourado); text-shadow: 0 0 15px var(--dourado-rgba); transform: translateY(-2px); display: inline-block;} 
+        .nome-professor { 
+            font-size: 28px; font-weight: 800; margin: 0; letter-spacing: 2px; 
+            background: linear-gradient(to right, #FFF, #CBD5E1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nome-professor span { 
+            background: linear-gradient(to right, var(--dourado-escuro), var(--dourado-claro), var(--dourado-escuro));
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-style: italic; animation: foil-shimmer 6s linear infinite;
+        }
+        nav a { color: var(--texto-mutado); text-decoration: none; margin-left: 40px; font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: all 0.4s; position: relative;}
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background: var(--dourado); transition: all 0.4s; transform: translateX(-50%);}
+        nav a:hover { color: var(--branco); text-shadow: 0 0 15px var(--dourado-rgba); } 
+        nav a:hover::after { width: 100%; }
 
         /* ================= SEÇÃO HERO ================= */
         .secao-destaque-logo { 
-            padding: 140px 50px 60px; 
+            padding: 160px 50px 80px; 
             display: flex; 
             align-items: center; 
             justify-content: center;
@@ -147,356 +189,397 @@
         }
         
         .hero-container {
-            max-width: 1200px;
+            max-width: 1250px;
             width: 100%;
             display: flex;
             align-items: center; 
             justify-content: space-between;
-            gap: 50px;
+            gap: 60px;
             z-index: 10;
         }
 
         .hero-content {
             flex: 1.2;
-            max-width: 680px;
-            padding-bottom: 40px; 
+            max-width: 700px;
         }
 
         .selo-destaque { 
             display: inline-flex; 
             align-items: center;
-            gap: 10px;
-            background: rgba(229, 192, 123, 0.05); 
-            border: 1px solid var(--dourado); 
-            color: var(--dourado); 
-            padding: 8px 24px; 
-            border-radius: 30px; 
+            gap: 12px;
+            background: rgba(212, 175, 55, 0.03); 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            color: var(--dourado-claro); 
+            padding: 10px 28px; 
+            border-radius: 40px; 
             font-size: 11px; 
-            font-weight: 700; 
-            margin-bottom: 35px; 
-            letter-spacing: 3px;
+            font-weight: 800; 
+            margin-bottom: 40px; 
+            letter-spacing: 4px;
             text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(229, 192, 123, 0.15);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(5px);
         }
-        .selo-destaque::before { content: ''; width: 6px; height: 6px; background: var(--dourado); border-radius: 50%; box-shadow: 0 0 10px var(--dourado);}
+        .selo-destaque::before { content: ''; width: 8px; height: 8px; background: var(--dourado-claro); border-radius: 50%; box-shadow: 0 0 15px var(--dourado-claro), 0 0 5px #FFF;}
 
-        .hero-h1-destaque { color: var(--branco); font-size: 58px; margin-bottom: 30px; font-weight: 700; line-height: 1.15; }
+        .hero-h1-destaque { color: var(--branco); font-size: 64px; margin-bottom: 35px; font-weight: 800; line-height: 1.15; text-shadow: 0 10px 30px rgba(0,0,0,0.8);}
         
         .destaque-txt { 
-            background: linear-gradient(to right, var(--dourado) 20%, #FFF5D1 40%, #FFF5D1 60%, var(--dourado) 80%);
+            background: linear-gradient(to right, var(--dourado-escuro) 10%, var(--dourado-claro) 40%, var(--dourado-claro) 60%, var(--dourado-escuro) 90%);
             background-size: 200% auto;
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            text-shadow: 0 0 30px rgba(229, 192, 123, 0.3); 
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); 
             font-style: italic; 
-            animation: shimmer-text 5s linear infinite;
+            animation: foil-shimmer 4s linear infinite;
         }
 
-        .hero-p-destaque { font-size: 19px; line-height: 1.8; color: var(--texto-mutado); margin-bottom: 50px; font-weight: 400; }
+        .hero-p-destaque { font-size: 20px; line-height: 1.8; color: var(--texto-mutado); margin-bottom: 55px; font-weight: 400; text-shadow: 0 5px 15px rgba(0,0,0,0.5);}
         
-        .hero-botoes { display: flex; gap: 20px; }
+        .hero-botoes { display: flex; gap: 25px; }
 
         .btn { 
-            background: linear-gradient(135deg, var(--dourado) 0%, #C99E52 100%); 
+            background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 50%, var(--dourado-escuro) 100%); 
             color: #000; 
-            padding: 20px 45px; 
+            padding: 22px 50px; 
             border: none; 
-            border-radius: 8px; 
+            border-radius: 12px; 
             font-size: 14px; 
             cursor: pointer; 
-            font-weight: 700; 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            font-weight: 800; 
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
             text-decoration: none; 
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 10px 25px rgba(229, 192, 123, 0.3);
+            letter-spacing: 3px;
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.25), inset 0 2px 0 rgba(255,255,255,0.4);
             position: relative;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
         }
         .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
-            transform: skewX(-25deg);
-            animation: shine-sweep 4s infinite;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: rotate(45deg);
+            animation: shine-sweep 5s infinite;
         }
-        .btn:hover { background: linear-gradient(135deg, #F3D38D 0%, var(--dourado) 100%); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(229, 192, 123, 0.5); }
+        .btn:hover { background: linear-gradient(135deg, var(--dourado-claro) 0%, var(--dourado) 100%); transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4); }
         .btn-glow { animation: pulse-luminous 3s infinite; } 
 
         .btn-outline {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(15px);
             color: var(--branco);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 20px 45px; 
-            border-radius: 8px; 
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 22px 50px; 
+            border-radius: 12px; 
             font-size: 14px; 
             cursor: pointer; 
-            font-weight: 600; 
-            transition: all 0.4s; 
+            font-weight: 700; 
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
             text-decoration: none; 
             display: inline-block;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .btn-outline:hover { background: var(--branco); color: var(--bg-profundo); border-color: var(--branco); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);}
+        .btn-outline:hover { background: rgba(255,255,255,0.05); color: var(--dourado-claro); border-color: var(--dourado); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);}
 
         .hero-visual { flex: 1; display: flex; justify-content: center; position: relative;}
         .hero-visual::before {
-            content: ''; position: absolute; top: 10%; left: 10%; right: 10%; bottom: 0;
-            background: radial-gradient(circle, var(--dourado-rgba) 0%, transparent 60%);
-            filter: blur(60px); z-index: -1;
+            content: ''; position: absolute; top: 5%; left: 5%; right: 5%; bottom: 5%;
+            background: radial-gradient(circle, var(--dourado-rgba) 0%, transparent 65%);
+            filter: blur(70px); z-index: -1; animation: breathe 8s infinite alternate;
         }
-        .hero-doctor-img { max-width: 100%; width: 520px; object-fit: cover; filter: drop-shadow(0 25px 45px rgba(0,0,0,0.9)); display: block; z-index: 1; animation: float 7s ease-in-out infinite;}
+        .hero-doctor-img { max-width: 100%; width: 550px; object-fit: cover; z-index: 1; animation: float-3d 8s ease-in-out infinite;}
 
         /* ================= DESTAQUES ================= */
         .features-bar { 
-            display: flex; justify-content: center; gap: 90px; background: rgba(11, 25, 44, 0.3); backdrop-filter: blur(15px); padding: 50px 50px; 
-            border-top: 1px solid var(--borda-suave); border-bottom: 1px solid var(--borda-suave); flex-wrap: wrap; position: relative; z-index: 5; 
+            display: flex; justify-content: center; gap: 100px; background: rgba(6, 13, 24, 0.8); backdrop-filter: blur(20px); padding: 55px 50px; 
+            border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1); flex-wrap: wrap; position: relative; z-index: 5; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
         }
-        .feature-item { text-align: center; font-size: 12px; color: var(--texto-mutado); font-weight: 500; text-transform: uppercase; letter-spacing: 3px; transition: transform 0.4s;}
-        .feature-item:hover { transform: translateY(-5px); color: var(--dourado);}
-        .feature-item strong { display: block; font-size: 34px; color: var(--branco); margin-bottom: 8px; font-weight: 800; text-shadow: 0 0 20px rgba(255,255,255,0.1); font-family: 'Playfair Display', serif;} 
+        .feature-item { text-align: center; font-size: 12px; color: var(--texto-mutado); font-weight: 600; text-transform: uppercase; letter-spacing: 3px; transition: all 0.5s;}
+        .feature-item:hover { transform: translateY(-8px); color: var(--dourado-claro); filter: drop-shadow(0 10px 15px rgba(212,175,55,0.3));}
+        .feature-item strong { display: block; font-size: 38px; color: var(--branco); margin-bottom: 10px; font-weight: 800; text-shadow: 0 0 25px rgba(255,255,255,0.15); font-family: 'Playfair Display', serif;} 
 
         /* ================= PROBLEMA E CIÊNCIA ================= */
-        .problema-cientifico { padding: 130px 50px; position: relative; }
-        .problema-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 80px; }
+        .problema-cientifico { padding: 150px 50px; position: relative; }
+        .problema-container { max-width: 1250px; margin: 0 auto; display: flex; align-items: center; gap: 90px; }
         .problema-imagem { flex: 1; position: relative; }
-        .problema-imagem::after { content:''; position: absolute; inset: -20px; border: 1px solid var(--dourado); border-radius: 20px; z-index: -1; opacity: 0.3; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);}
-        .problema-imagem:hover::after { inset: -10px; opacity: 0.8; background: rgba(229,192,123,0.05); }
-        .img-apontando { width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); z-index: 2; position: relative; filter: contrast(1.05);}
-        .problema-imagem:hover .img-apontando { transform: scale(1.03); }
+        .problema-imagem::after { content:''; position: absolute; inset: -25px; border: 1px solid var(--dourado-rgba); border-radius: 24px; z-index: -1; opacity: 0.5; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);}
+        .problema-imagem:hover::after { inset: -15px; opacity: 1; background: rgba(212,175,55,0.05); box-shadow: 0 0 50px rgba(212,175,55,0.1);}
+        .img-apontando { width: 100%; max-width: 520px; border-radius: 20px; box-shadow: 0 40px 80px rgba(0,0,0,0.9); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); z-index: 2; position: relative; filter: contrast(1.05) brightness(1.05);}
+        .problema-imagem:hover .img-apontando { transform: scale(1.04) rotate(1deg); }
         
         .problema-textos { flex: 1.2; text-align: left; }
-        .problema-textos h2 { font-size: 48px; margin-bottom: 50px; line-height: 1.2; font-weight: 700; color: var(--branco); -webkit-text-fill-color: initial;} /* Remove gradient here for emphasis */
+        .problema-textos h2 { font-size: 52px; margin-bottom: 60px; line-height: 1.2; font-weight: 800; color: var(--branco); text-shadow: 0 10px 30px rgba(0,0,0,0.5);} 
         
-        .grid-problema { display: grid; gap: 35px; }
+        .grid-problema { display: grid; gap: 40px; }
         .card-problema { 
-            background: rgba(13, 27, 42, 0.7); backdrop-filter: blur(15px); padding: 45px; border-radius: 16px; 
-            border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid var(--dourado); 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            background: linear-gradient(145deg, rgba(15,30,51,0.8) 0%, rgba(10,20,35,0.9) 100%); 
+            backdrop-filter: blur(20px); padding: 50px; border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.05); border-left: 5px solid var(--dourado); 
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
         } 
-        .card-problema:hover { transform: translateX(10px); background: rgba(13, 27, 42, 0.95); border-color: var(--borda-suave); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .card-problema h3 { font-size: 24px; margin-bottom: 15px; color: var(--dourado); font-weight: 600; display: flex; align-items: center; gap: 15px;}
-        .card-problema h3 svg { width: 24px; height: 24px; }
-        .card-problema p { font-size: 16px; line-height: 1.9; color: var(--texto-claro); font-weight: 300;}
+        /* Reflexo de vidro no hover */
+        .card-problema::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%); opacity: 0; transition: opacity 0.5s; transform: scale(0.5); pointer-events: none;}
+        .card-problema:hover::before { opacity: 1; transform: scale(1); }
+
+        .card-problema:hover { transform: translateX(15px); border-color: rgba(212,175,55,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.6), -10px 0 30px rgba(212,175,55,0.1); }
+        .card-problema h3 { font-size: 26px; margin-bottom: 20px; color: var(--dourado-claro); font-weight: 700; display: flex; align-items: center; gap: 18px; text-shadow: 0 2px 10px rgba(212,175,55,0.2);}
+        .card-problema h3 svg { width: 28px; height: 28px; filter: drop-shadow(0 0 8px var(--dourado-rgba));}
+        .card-problema p { font-size: 17px; line-height: 1.9; color: var(--texto-claro); font-weight: 300;}
 
         /* ================= MÉTODO PRÁTICO (OS 3 PILARES) ================= */
-        .metodo-pratico { padding: 130px 50px; background: linear-gradient(180deg, var(--bg-profundo) 0%, #06101E 100%); }
-        .metodo-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: row-reverse; align-items: center; gap: 80px; }
+        .metodo-pratico { padding: 150px 50px; background: linear-gradient(180deg, var(--bg-profundo) 0%, #08111F 50%, var(--bg-profundo) 100%); }
+        .metodo-container { max-width: 1250px; margin: 0 auto; display: flex; flex-direction: row-reverse; align-items: center; gap: 90px; }
         .metodo-imagem { flex: 1; position: relative; }
-        .metodo-imagem::before { content:''; position:absolute; inset: 0; box-shadow: inset 0 0 60px var(--bg-profundo); z-index: 2; pointer-events:none; border-radius: 16px;}
-        .img-palestra { width: 100%; max-width: 550px; border-radius: 16px; border: 1px solid rgba(229, 192, 123, 0.2); box-shadow: 0 0 50px rgba(229, 192, 123, 0.1); filter: contrast(1.1);}
-        
+        .metodo-imagem::before { content:''; position:absolute; inset: 0; box-shadow: inset 0 0 80px var(--bg-profundo); z-index: 2; pointer-events:none; border-radius: 20px;}
+        .img-palestra { width: 100%; max-width: 580px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 0 60px rgba(212, 175, 55, 0.08); filter: contrast(1.15) brightness(0.95); transition: all 0.8s;}
+        .metodo-imagem:hover .img-palestra { filter: contrast(1.1) brightness(1.1); box-shadow: 0 0 80px rgba(212, 175, 55, 0.15);}
+
         .metodo-textos { flex: 1.2; }
-        .metodo-textos h2 { font-size: 48px; margin-bottom: 50px; color: var(--branco); line-height: 1.2; font-weight: 700;}
-        .grid-metodo { display: grid; gap: 30px; }
+        .metodo-textos h2 { font-size: 52px; margin-bottom: 60px; color: var(--branco); line-height: 1.2; font-weight: 800;}
+        .grid-metodo { display: grid; gap: 35px; }
         
         .card-metodo { 
-            background: rgba(255, 255, 255, 0.01); border-radius: 12px; border: 1px solid rgba(255,255,255,0.04); 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
+            background: rgba(255, 255, 255, 0.015); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
+            backdrop-filter: blur(10px);
         }
-        .card-metodo::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(229,192,123,0.05), transparent); transition: 0.6s; }
+        .card-metodo::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent); transition: 0.8s; }
         .card-metodo:hover::before { left: 100%; }
-        .card-metodo:hover { transform: translateY(-8px); border-color: rgba(229,192,123,0.4); background: rgba(13, 27, 42, 0.6); box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(229, 192, 123, 0.1); } 
+        .card-metodo:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(212,175,55,0.5); background: rgba(15, 30, 51, 0.8); box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212, 175, 55, 0.15); z-index: 2;} 
         
-        .card-header-metodo { padding: 30px 30px 15px; display: flex; align-items: center; gap: 20px; transition: background 0.4s;}
-        .card-icone-metodo { background: rgba(229,192,123,0.08); width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--borda-suave); color: var(--dourado);}
-        .card-metodo h4 { font-size: 22px; font-weight: 700; margin: 0; letter-spacing: 1px; color: var(--branco);}
-        .card-body-metodo { padding: 0 30px 30px; }
-        .card-metodo p { font-size: 16px; line-height: 1.8; color: var(--texto-mutado); margin: 0; font-weight: 300;}
+        .card-header-metodo { padding: 35px 35px 15px; display: flex; align-items: center; gap: 25px; transition: background 0.5s;}
+        .card-metodo:hover .card-header-metodo { background: radial-gradient(circle at top left, rgba(212,175,55,0.1) 0%, transparent 70%); }
+        .card-icone-metodo { background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.02) 100%); width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; border-radius: 16px; border: 1px solid rgba(212,175,55,0.3); color: var(--dourado-claro); box-shadow: inset 0 0 15px rgba(212,175,55,0.1);}
+        .card-metodo h4 { font-size: 24px; font-weight: 800; margin: 0; letter-spacing: 1.5px; color: var(--branco);}
+        .card-body-metodo { padding: 0 35px 35px; }
+        .card-metodo p { font-size: 16px; line-height: 1.9; color: var(--texto-mutado); margin: 0; font-weight: 400;}
 
         /* ================= PÚBLICO ALVO ================= */
-        .publico-alvo { padding: 130px 50px; text-align: center; position: relative;}
-        .publico-alvo h2 { color: var(--branco); font-size: 48px; margin-bottom: 70px; font-weight: 700;}
-        .grid-publico { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+        .publico-alvo { padding: 150px 50px; text-align: center; position: relative;}
+        .publico-alvo h2 { color: var(--branco); font-size: 52px; margin-bottom: 80px; font-weight: 800;}
+        .grid-publico { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1250px; margin: 0 auto; }
         .item-publico { 
-            flex: 1; min-width: 320px; padding: 50px 40px; background: var(--azul-card); border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.03); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
-            overflow: hidden;
+            flex: 1; min-width: 320px; padding: 60px 45px; background: linear-gradient(180deg, rgba(15,30,51,0.6) 0%, rgba(10,20,35,0.8) 100%); border-radius: 24px; 
+            border: 1px solid rgba(255,255,255,0.04); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+            overflow: hidden; backdrop-filter: blur(20px);
         }
-        .item-publico::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--dourado); transform: scaleX(0); transition: transform 0.5s ease-out; transform-origin: left;}
+        .item-publico::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--dourado-escuro), var(--dourado-claro), var(--dourado-escuro)); transform: scaleX(0); transition: transform 0.6s ease-out; transform-origin: left;}
         .item-publico:hover::after { transform: scaleX(1); }
-        .item-publico:hover { transform: translateY(-12px); border-color: rgba(229,192,123,0.3); box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 40px rgba(229, 192, 123, 0.1); }
-        .icone-publico { margin-bottom: 30px; transition: transform 0.5s; display: inline-block;}
-        .item-publico:hover .icone-publico { transform: scale(1.15) translateY(-5px); }
-        .item-publico p { font-size: 16px; line-height: 1.9; color: var(--texto-mutado); font-weight: 400;}
+        .item-publico:hover { transform: translateY(-15px); border-color: rgba(212,175,55,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 -10px 40px rgba(212, 175, 55, 0.05); }
+        .icone-publico { margin-bottom: 35px; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; filter: drop-shadow(0 10px 15px rgba(212,175,55,0.2));}
+        .item-publico:hover .icone-publico { transform: scale(1.2) translateY(-10px); filter: drop-shadow(0 15px 25px rgba(212,175,55,0.4)); }
+        .item-publico p { font-size: 17px; line-height: 1.9; color: var(--texto-claro); font-weight: 300;}
 
         /* ================= CTA FECHAMENTO ================= */
-        .cta-fechamento { padding: 120px 50px; background: radial-gradient(circle at center, rgba(13,27,42,0.9) 0%, var(--bg-profundo) 100%); text-align: center; border-top: 1px solid var(--borda-suave); border-bottom: 1px solid var(--borda-suave); position: relative; overflow: hidden;}
-        .cta-fechamento::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(229,192,123,0.08) 0%, transparent 50%); animation: rotate 25s linear infinite; z-index: 0; pointer-events: none;}
+        .cta-fechamento { padding: 140px 50px; background: radial-gradient(circle at center, rgba(15,30,51,0.9) 0%, var(--bg-profundo) 100%); text-align: center; border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;}
+        .cta-fechamento::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent 0deg, rgba(212,175,55,0.05) 90deg, transparent 180deg, rgba(212,175,55,0.05) 270deg, transparent 360deg); animation: rotate 30s linear infinite; z-index: 0; pointer-events: none;}
         @keyframes rotate { 100% { transform: rotate(360deg); } }
-        .cta-fechamento h3 { font-size: 44px; margin-bottom: 30px; font-weight: 700; color: var(--branco); position: relative; z-index: 1;}
-        .cta-fechamento p { font-size: 22px; color: var(--dourado); max-width: 850px; margin: 0 auto 50px; font-weight: 400; line-height: 1.7; position: relative; z-index: 1;}
+        .cta-fechamento h3 { font-size: 48px; margin-bottom: 35px; font-weight: 800; color: var(--branco); position: relative; z-index: 1; text-shadow: 0 10px 20px rgba(0,0,0,0.5);}
+        .cta-fechamento p { font-size: 26px; color: var(--dourado-claro); max-width: 900px; margin: 0 auto 50px; font-weight: 400; line-height: 1.7; position: relative; z-index: 1; font-style: italic;}
 
         /* ================= CURSOS (HIGH TICKET CARDS) ================= */
-        .cursos { padding: 130px 50px; background: #01040A; position: relative; border-top: 1px solid var(--borda-suave);}
-        .cursos-header { text-align: center; margin-bottom: 80px; }
-        .cursos h2 { color: var(--branco); font-size: 48px; margin-bottom: 20px; font-weight: 700;}
-        .cursos-sub { color: var(--texto-mutado); font-size: 18px; margin-bottom: 40px; font-weight: 400;}
+        .cursos { padding: 150px 50px; background: var(--bg-profundo); position: relative; }
+        .cursos-header { text-align: center; margin-bottom: 90px; }
+        .cursos h2 { color: var(--branco); font-size: 52px; margin-bottom: 20px; font-weight: 800;}
+        .cursos-sub { color: var(--texto-mutado); font-size: 20px; margin-bottom: 50px; font-weight: 300;}
         
-        .grid-cursos { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; max-width: 1300px; margin: 0 auto;}
+        .grid-cursos { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; max-width: 1350px; margin: 0 auto;}
         
         .card { 
-            background: rgba(13, 27, 42, 0.7); backdrop-filter: blur(24px);
-            border-radius: 24px; padding: 50px 40px; width: 380px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
-            border: 1px solid rgba(255,255,255,0.04); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+            background: linear-gradient(145deg, rgba(15,30,51,0.6) 0%, rgba(10,20,35,0.9) 100%); backdrop-filter: blur(30px);
+            border-radius: 28px; padding: 55px 45px; width: 400px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); 
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
             display: flex; flex-direction: column; justify-content: space-between; position: relative;
         }
-        .card:hover { transform: translateY(-15px); border-color: rgba(229,192,123,0.3); box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 10px 30px rgba(229,192,123,0.1); }
-        .card h3 { color: var(--branco); margin-bottom: 25px; font-size: 28px; font-weight: 600;}
-        .card p { font-size: 15px; margin-bottom: 45px; line-height: 1.8; color: var(--texto-mutado); font-weight: 300;}
-        .preco-curso { font-size: 44px; font-weight: 700; color: var(--branco); margin-bottom: 45px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif;}
-        .preco-curso span { font-size: 12px; color: var(--dourado); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-family: 'Montserrat', sans-serif;}
         
-        .btn-curso { background: transparent; color: var(--branco); padding: 20px; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer; width: 100%; font-weight: 700; transition: 0.4s; font-size: 13px; margin-top: auto; text-transform: uppercase; letter-spacing: 2px; position: relative; overflow: hidden;}
-        .btn-curso::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: skewX(-25deg); transition: 0.5s; }
-        .btn-curso:hover::before { animation: shine-sweep 1s forwards; }
-        .btn-curso:hover { background: var(--branco); color: #000; border-color: var(--branco); box-shadow: 0 10px 25px rgba(255,255,255,0.2);}
+        /* Spotlight Hover - removido o overflow hidden principal para selo vazar */
+        .card::before { content: ''; position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); border-radius: 50%; top: -200px; left: -200px; opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 1;}
+        .card:hover::before { opacity: 1; }
+
+        .card:hover { transform: translateY(-20px); border-color: rgba(212,175,55,0.4); box-shadow: 0 50px 100px rgba(0,0,0,0.8), 0 20px 40px rgba(212,175,55,0.1); }
+        .card h3 { color: var(--branco); margin-bottom: 25px; font-size: 32px; font-weight: 700; position: relative; z-index: 2;}
+        .card p { font-size: 16px; margin-bottom: 50px; line-height: 1.9; color: var(--texto-claro); font-weight: 300; position: relative; z-index: 2;}
+        .preco-curso { font-size: 48px; font-weight: 800; color: var(--branco); margin-bottom: 50px; display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif; position: relative; z-index: 2;}
+        .preco-curso span { font-size: 13px; color: var(--dourado-claro); font-weight: 700; text-transform: uppercase; letter-spacing: 4px; font-family: 'Montserrat', sans-serif;}
+        
+        .btn-curso { background: transparent; color: var(--branco); padding: 22px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; cursor: pointer; width: 100%; font-weight: 700; transition: all 0.5s; font-size: 14px; margin-top: auto; text-transform: uppercase; letter-spacing: 3px; position: relative; overflow: hidden; z-index: 2;}
+        .btn-curso::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transform: skewX(-25deg); transition: 0.5s; }
+        .btn-curso:hover::after { animation: shine-sweep 1s forwards; }
+        .btn-curso:hover { background: var(--branco); color: #000; border-color: var(--branco); box-shadow: 0 15px 35px rgba(255,255,255,0.3);}
         
         .card-premium { 
-            background: linear-gradient(180deg, #0B192C 0%, #050D1A 100%);
-            border: 1px solid var(--dourado); transform: scale(1.05); box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 50px rgba(229,192,123,0.08);
-            z-index: 2;
+            background: linear-gradient(180deg, #0D1B2A 0%, #020408 100%);
+            border: 1px solid var(--dourado); transform: scale(1.05); box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(212,175,55,0.1);
+            z-index: 3;
         }
-        .card-premium:hover { transform: scale(1.05) translateY(-15px); border-color: #F3D38D; box-shadow: 0 50px 100px rgba(0,0,0,0.9), 0 0 60px rgba(229,192,123,0.2); }
-        .selo-premium { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--dourado) 0%, #C99E52 100%); color: #000; padding: 8px 26px; border-radius: 30px; font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; box-shadow: 0 10px 20px rgba(229, 192, 123, 0.4); white-space: nowrap; overflow: hidden;}
-        .selo-premium::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-25deg); animation: shine-sweep 3s infinite 1s; }
+        .card-premium:hover { transform: scale(1.05) translateY(-20px); border-color: var(--dourado-claro); box-shadow: 0 60px 120px rgba(0,0,0,0.95), 0 0 80px rgba(212,175,55,0.25); z-index: 4;}
         
-        .card-premium .preco-curso { color: var(--dourado); text-shadow: 0 0 20px rgba(229,192,123,0.2);}
-        .card-premium .preco-curso span { color: var(--texto-claro); opacity: 0.7;}
-        .card-premium .btn-curso { background: linear-gradient(135deg, var(--dourado) 0%, #C99E52 100%); border: none; color: #000; box-shadow: 0 10px 20px rgba(229, 192, 123, 0.3); }
-        .card-premium .btn-curso:hover { background: linear-gradient(135deg, #F3D38D 0%, var(--dourado) 100%); box-shadow: 0 15px 30px rgba(229, 192, 123, 0.5); }
+        .selo-premium { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--dourado-escuro) 0%, var(--dourado-claro) 50%, var(--dourado-escuro) 100%); background-size: 200% auto; color: #000; padding: 10px 30px; border-radius: 40px; font-size: 12px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5); white-space: nowrap; z-index: 10; animation: foil-shimmer 3s linear infinite;}
+        
+        .card-premium .preco-curso { color: var(--dourado-claro); text-shadow: 0 0 30px rgba(212,175,55,0.3);}
+        .card-premium .preco-curso span { color: var(--texto-mutado); }
+        .card-premium .btn-curso { background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 50%, var(--dourado-escuro) 100%); border: none; color: #000; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); border-radius: 12px;}
+        .card-premium .btn-curso:hover { background: linear-gradient(135deg, var(--dourado-claro) 0%, var(--dourado) 100%); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.6); }
 
         /* ================= IMPACTO E PROVA SOCIAL ================= */
-        .impacto { padding: 130px 50px; background: var(--bg-profundo); text-align: center; border-bottom: 1px solid var(--borda-suave);}
-        .impacto h2 { color: var(--branco); font-size: 48px; margin-bottom: 20px; font-weight: 700;}
-        .impacto-sub { color: var(--texto-mutado); font-size: 18px; margin-bottom: 70px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.8; font-weight: 300;}
+        .impacto { padding: 150px 50px; background: var(--bg-profundo); text-align: center;}
+        .impacto h2 { color: var(--branco); font-size: 52px; margin-bottom: 25px; font-weight: 800;}
+        .impacto-sub { color: var(--texto-mutado); font-size: 19px; margin-bottom: 80px; max-width: 850px; margin-left: auto; margin-right: auto; line-height: 1.8; font-weight: 300;}
         
-        .grid-impacto { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto 80px; }
-        .img-impacto { width: 100%; height: 260px; object-fit: cover; border-radius: 12px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(30%) contrast(1.1); border: 1px solid rgba(255,255,255,0.04); }
-        .img-impacto:hover { transform: scale(1.05) translateY(-10px); z-index: 2; position: relative; filter: grayscale(0%); box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 10px 20px var(--dourado-rgba); border-color: var(--dourado); }
+        .grid-impacto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1250px; margin: 0 auto 90px; }
+        .img-impacto { width: 100%; height: 280px; object-fit: cover; border-radius: 16px; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(50%) contrast(1.1) brightness(0.8); border: 1px solid rgba(255,255,255,0.05); }
+        .img-impacto:hover { transform: scale(1.08) translateY(-15px); z-index: 2; position: relative; filter: grayscale(0%) contrast(1.1) brightness(1.1); box-shadow: 0 35px 70px rgba(0,0,0,0.9), 0 15px 30px var(--dourado-rgba); border-color: var(--dourado); }
         
-        .feedbacks { display: flex; gap: 35px; justify-content: center; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-        .card-feedback { background: var(--azul-card); padding: 45px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); text-align: left; flex: 1; min-width: 320px; transition: all 0.4s; position: relative; overflow: hidden;} 
-        .card-feedback::after { content: '”'; position: absolute; bottom: -30px; right: 20px; font-size: 140px; color: rgba(255,255,255,0.02); font-family: 'Playfair Display', serif; line-height: 1; transition: color 0.4s;}
-        .card-feedback:hover { transform: translateY(-10px); border-color: var(--borda-suave); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
-        .card-feedback:hover::after { color: rgba(229,192,123,0.08); }
-        .estrelas { color: var(--amarelo-estrela); font-size: 22px; margin-bottom: 25px; letter-spacing: 3px; text-shadow: 0 0 10px rgba(251, 191, 36, 0.4); }
-        .texto-feedback { font-size: 16px; font-style: italic; color: var(--texto-claro); line-height: 1.9; margin-bottom: 25px; font-weight: 300; position: relative; z-index: 1;}
-        .autor-feedback { font-weight: 700; color: var(--dourado); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 1;}
+        .feedbacks { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; max-width: 1250px; margin: 0 auto; }
+        .card-feedback { background: linear-gradient(145deg, rgba(15,30,51,0.5) 0%, rgba(10,20,35,0.8) 100%); backdrop-filter: blur(20px); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.04); text-align: left; flex: 1; min-width: 340px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;} 
+        .card-feedback::after { content: '”'; position: absolute; bottom: -40px; right: 25px; font-size: 160px; color: rgba(255,255,255,0.02); font-family: 'Playfair Display', serif; line-height: 1; transition: color 0.5s;}
+        .card-feedback:hover { transform: translateY(-15px); border-color: rgba(212,175,55,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.7); }
+        .card-feedback:hover::after { color: rgba(212,175,55,0.06); }
+        .estrelas { color: var(--amarelo-estrela); font-size: 24px; margin-bottom: 25px; letter-spacing: 4px; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5)); }
+        .texto-feedback { font-size: 17px; font-style: italic; color: var(--texto-claro); line-height: 1.9; margin-bottom: 30px; font-weight: 300; position: relative; z-index: 1;}
+        .autor-feedback { font-weight: 800; color: var(--dourado-claro); font-size: 13px; text-transform: uppercase; letter-spacing: 3px; position: relative; z-index: 1;}
         
-        .destaque-500 { display: inline-block; background: rgba(229,192,123,0.1); color: var(--dourado); padding: 18px 45px; border-radius: 30px; font-weight: 700; font-size: 16px; margin-top: 70px; border: 1px solid var(--dourado); box-shadow: 0 0 25px rgba(229, 192, 123, 0.15); letter-spacing: 1px; animation: pulse-luminous 4s infinite;}
+        .destaque-500 { display: inline-flex; align-items: center; gap: 15px; background: rgba(212,175,55,0.05); color: var(--dourado-claro); padding: 20px 50px; border-radius: 40px; font-weight: 700; font-size: 16px; margin-top: 80px; border: 1px solid var(--dourado); box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); letter-spacing: 2px; text-transform: uppercase; backdrop-filter: blur(10px);}
+        .destaque-500 svg { width: 24px; height: 24px; filter: drop-shadow(0 0 10px var(--dourado)); animation: pulse-luminous 2s infinite alternate;}
+
+        /* ================= DIVISÃO ================= */
+        .divider-container { width: 100%; display: flex; justify-content: center; padding: 50px 0; background: var(--bg-profundo); }
+        .divider-container .divider { max-width: 800px; }
 
         /* ================= SOBRE O PROFESSOR ================= */
-        .sobre-professor { padding: 130px 50px; background: #050D1A; border-top: 1px solid var(--borda-suave); }
-        .container-sobre-novo { max-width: 1000px; display: flex; flex-direction: column; align-items: center; margin: 0 auto; text-align: center; }
+        .sobre-professor { padding: 100px 50px 150px; background: radial-gradient(ellipse at top, #0A1423 0%, var(--bg-profundo) 70%); }
+        .container-sobre-novo { max-width: 1100px; display: flex; flex-direction: column; align-items: center; margin: 0 auto; text-align: center; }
 
         .perfil-enxuto {
-            width: 300px; height: 300px; border-radius: 50%; object-fit: cover; object-position: top center; 
-            border: 4px solid var(--dourado); box-shadow: 0 0 40px rgba(229, 192, 123, 0.2), inset 0 0 20px rgba(0,0,0,0.5);
-            margin: 0 auto 50px auto; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 320px; height: 320px; border-radius: 50%; object-fit: cover; object-position: top center; 
+            border: 4px solid var(--dourado); padding: 5px; background: var(--bg-profundo);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(0,0,0,0.8);
+            margin: 0 auto 50px auto; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .perfil-enxuto:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(229, 192, 123, 0.4); }
+        .perfil-enxuto:hover { transform: scale(1.05) rotate(2deg); box-shadow: 0 0 80px rgba(212, 175, 55, 0.4); }
         
-        .container-sobre-novo h2 { font-size: 48px; color: var(--branco); margin-bottom: 50px; font-weight: 700;}
+        .container-sobre-novo h2 { font-size: 52px; color: var(--branco); margin-bottom: 60px; font-weight: 800;}
 
-        .curriculo-elite { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 950px; margin: 0 auto 60px auto; }
+        .curriculo-elite { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 1000px; margin: 0 auto 70px auto; }
         .item-curriculo { 
-            background: rgba(255,255,255,0.02); color: var(--texto-mutado); padding: 15px 28px; 
-            border-radius: 30px; font-weight: 500; font-size: 13px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 12px; 
-            border: 1px solid rgba(255,255,255,0.08); transition: all 0.4s; backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.02); color: var(--texto-mutado); padding: 18px 32px; 
+            border-radius: 40px; font-weight: 500; font-size: 14px; letter-spacing: 1px; display: flex; align-items: center; gap: 15px; 
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(10px);
         }
-        .item-curriculo:hover { background: rgba(229,192,123,0.08); border-color: var(--dourado); color: var(--dourado); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3);}
-        .item-curriculo svg { filter: drop-shadow(0 0 5px rgba(229,192,123,0.3)); width: 20px; height: 20px;}
+        .item-curriculo:hover { background: rgba(212,175,55,0.08); border-color: var(--dourado); color: var(--dourado-claro); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.15);}
+        .item-curriculo svg { filter: drop-shadow(0 0 8px rgba(212,175,55,0.4)); width: 22px; height: 22px; color: var(--dourado);}
         
-        .texto-sobre-novo { max-width: 850px; margin-bottom: 60px; }
-        .texto-sobre-novo p { font-size: 17px; line-height: 1.9; margin-bottom: 25px; color: var(--texto-claro); font-weight: 300;}
+        .texto-sobre-novo { max-width: 900px; margin-bottom: 80px; }
+        .texto-sobre-novo p { font-size: 18px; line-height: 2; margin-bottom: 25px; color: var(--texto-claro); font-weight: 300;}
         .citacao { 
-            max-width: 850px; margin: 45px auto 0 auto; font-style: italic; border-left: 4px solid var(--dourado); 
-            padding-left: 30px; color: var(--branco); font-size: 22px; line-height: 1.7; font-weight: 500; text-align: left; 
-            background: linear-gradient(90deg, rgba(229,192,123,0.05) 0%, transparent 100%); padding: 35px; border-radius: 0 12px 12px 0;
+            max-width: 900px; margin: 50px auto 0 auto; font-style: italic; border-left: 5px solid var(--dourado); 
+            padding-left: 35px; color: var(--branco); font-size: 26px; line-height: 1.7; font-weight: 500; text-align: left; 
+            background: linear-gradient(90deg, rgba(212,175,55,0.08) 0%, transparent 100%); padding: 40px; border-radius: 0 16px 16px 0;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
         }
 
         /* ACERVO CIENTÍFICO */
-        .acervo-cientifico { width: 100%; max-width: 1000px; margin: 50px auto 0 auto; text-align: left; background: var(--bg-profundo); padding: 70px 60px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-        .acervo-cientifico h3 { color: var(--branco); font-size: 36px; margin-bottom: 45px; border-bottom: 2px solid var(--dourado); padding-bottom: 15px; display: inline-block; font-weight: 700;}
-        .acervo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 45px; }
-        .acervo-box { background: var(--azul-card); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); transition: transform 0.4s;}
-        .acervo-box:hover { transform: translateY(-5px); border-color: rgba(229,192,123,0.2);}
-        .acervo-box h4 { color: var(--dourado); font-size: 20px; margin-bottom: 25px; letter-spacing: 1.5px; font-weight: 600; text-transform: uppercase;}
+        .acervo-cientifico { width: 100%; max-width: 1050px; margin: 0 auto; text-align: left; background: rgba(15,30,51,0.4); padding: 80px 70px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(0,0,0,0.8); backdrop-filter: blur(20px);}
+        .acervo-cientifico h3 { color: var(--branco); font-size: 40px; margin-bottom: 50px; border-bottom: 2px solid var(--dourado); padding-bottom: 20px; display: inline-block; font-weight: 800;}
+        .acervo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+        .acervo-box { background: rgba(10,20,35,0.6); padding: 45px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); transition: transform 0.5s;}
+        .acervo-box:hover { transform: translateY(-8px); border-color: rgba(212,175,55,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.5);}
+        .acervo-box h4 { color: var(--dourado-claro); font-size: 22px; margin-bottom: 30px; letter-spacing: 2px; font-weight: 700; text-transform: uppercase;}
         .acervo-list { list-style: none; padding: 0; margin: 0; }
-        .acervo-list li { font-size: 14px; color: var(--texto-mutado); margin-bottom: 18px; padding-left: 22px; position: relative; line-height: 1.8; font-weight: 300;}
-        .acervo-list li::before { content: "•"; color: var(--dourado); font-weight: bold; position: absolute; left: 0; top: -2px; font-size: 20px; text-shadow: 0 0 10px var(--dourado-rgba); }
+        .acervo-list li { font-size: 16px; color: var(--texto-mutado); margin-bottom: 20px; padding-left: 25px; position: relative; line-height: 1.8; font-weight: 300;}
+        .acervo-list li::before { content: "•"; color: var(--dourado); font-weight: bold; position: absolute; left: 0; top: -2px; font-size: 22px; text-shadow: 0 0 12px var(--dourado-rgba); }
         
-        .scroll-box { max-height: 400px; overflow-y: auto; padding-right: 25px; }
+        .scroll-box { max-height: 450px; overflow-y: auto; padding-right: 30px; }
 
-        /* ================= RODAPÉ E MODAL ================= */
-        footer { background: #000; color: var(--texto-mutado); text-align: center; padding: 40px; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.03); font-weight: 400; letter-spacing: 2px; text-transform: uppercase;}
+        /* ================= MODAL PREMIUM ================= */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 4, 8, 0.95); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;}
+        .modal-content { 
+            background: linear-gradient(145deg, #0A1423 0%, #050A12 100%); 
+            padding: 60px; border-radius: 24px; max-width: 650px; width: 100%; 
+            position: relative; box-shadow: 0 0 80px rgba(0,0,0,0.9), 0 0 40px var(--dourado-rgba); 
+            text-align: left; border: 1px solid var(--dourado); 
+            max-height: 90vh; overflow-y: auto;
+        }
+        .close-btn { position: absolute; top: 25px; right: 35px; font-size: 40px; cursor: pointer; color: var(--texto-mutado); transition: 0.4s; line-height: 1; font-family: 'Montserrat', sans-serif; font-weight: 300; z-index: 10;}
+        .close-btn:hover { color: var(--dourado); transform: scale(1.2) rotate(90deg); text-shadow: 0 0 15px var(--dourado-rgba); }
         
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 15, 0.95); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: var(--azul-card); padding: 60px 50px; border-radius: 24px; max-width: 550px; width: 90%; position: relative; box-shadow: 0 0 60px rgba(0,0,0,0.9), 0 0 30px var(--dourado-rgba); text-align: center; border: 1px solid var(--dourado); animation: float 6s ease-in-out infinite;}
-        .close-btn { position: absolute; top: 20px; right: 30px; font-size: 36px; cursor: pointer; color: var(--texto-mutado); transition: 0.3s; line-height: 1; font-family: 'Montserrat', sans-serif;}
-        .close-btn:hover { color: var(--branco); transform: scale(1.1) rotate(90deg); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .modal-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 30px;}
+        #tituloModal { color: var(--branco); font-size: 38px; font-weight: 800; font-family: 'Playfair Display', serif; margin-bottom: 15px;}
+        #precoModal { font-size: 42px; font-weight: 800; color: var(--dourado-claro); text-shadow: 0 0 25px rgba(212,175,55,0.4); font-family: 'Playfair Display', serif; margin: 0;}
+        
+        #descModal { font-size: 16px; color: var(--texto-claro); line-height: 1.8; margin-bottom: 35px; font-weight: 300;}
+        
+        .skills-title { color: var(--dourado); font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;}
+        .modal-skills-list { list-style: none; padding: 0; margin-bottom: 40px;}
+        .modal-skills-list li { font-size: 15px; color: var(--texto-mutado); margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; line-height: 1.6; font-weight: 400;}
+        .modal-skills-list li svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--dourado); margin-top: 2px;}
 
         /* ================= WHATSAPP FLUTUANTE ================= */
         .whatsapp-btn {
-            position: fixed; bottom: 40px; right: 40px; background: #25D366; color: white;
-            width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3); z-index: 999; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: fixed; bottom: 40px; right: 40px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;
+            width: 75px; height: 75px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4); z-index: 999; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 2px solid rgba(255,255,255,0.2);
         }
-        .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5), 0 0 25px rgba(37,211,102,0.4); }
-        .whatsapp-icon { width: 38px; height: 38px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2)); }
+        .whatsapp-btn:hover { transform: scale(1.1) translateY(-10px); box-shadow: 0 20px 50px rgba(37, 211, 102, 0.6), 0 0 30px rgba(37,211,102,0.4); border-color: #FFF;}
+        .whatsapp-icon { width: 42px; height: 42px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
 
         /* ================= RESPONSIVIDADE ================= */
         @media (max-width: 1050px) {
             .grid-cursos { flex-direction: column; align-items: center; }
-            .card { width: 100%; max-width: 500px; }
+            .card { width: 100%; max-width: 550px; }
             .card-premium { transform: scale(1); }
             .card-premium:hover { transform: translateY(-15px); }
         }
 
         @media (max-width: 950px) {
-            .hero-container, .problema-container, .metodo-container { flex-direction: column; text-align: center; gap: 50px;}
+            .hero-container, .problema-container, .metodo-container { flex-direction: column; text-align: center; gap: 60px;}
             .hero-content, .problema-textos, .metodo-textos { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 0;}
             .selo-destaque { align-self: center; }
             .hero-h1-destaque, .hero-p-destaque, .problema-textos h2, .metodo-textos h2 { text-align: center; }
-            .hero-h1-destaque { font-size: 46px; }
+            .hero-h1-destaque { font-size: 50px; }
             .hero-botoes { flex-direction: column; width: 100%; }
             .btn, .btn-outline { width: 100%; }
-            .hero-doctor-img { width: 400px; }
+            .hero-doctor-img { width: 450px; }
             .img-apontando, .img-palestra { width: 100%; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
+            header { padding: 20px; flex-direction: column; gap: 20px; text-align: center; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
             nav a { margin-left: 0; font-size: 11px; }
             
             .secao-destaque-logo, .problema-cientifico, .metodo-pratico, .publico-alvo, .cursos, .impacto, .sobre-professor, .cta-fechamento { padding: 80px 20px; }
             
-            .hero-h1-destaque { font-size: 40px; }
-            .problema-textos h2, .metodo-textos h2, .cursos h2, .impacto h2, .container-sobre-novo h2 { font-size: 36px; margin-bottom: 30px;}
-            .card-problema, .card, .item-publico, .acervo-cientifico { padding: 30px 20px; }
+            .hero-h1-destaque { font-size: 42px; }
+            .problema-textos h2, .metodo-textos h2, .cursos h2, .impacto h2, .container-sobre-novo h2 { font-size: 38px; margin-bottom: 40px;}
+            .card-problema, .card, .item-publico, .acervo-cientifico { padding: 35px 25px; }
             
-            .features-bar { padding: 30px 20px; gap: 30px; flex-direction: column; }
+            .features-bar { padding: 40px 20px; gap: 40px; flex-direction: column; }
             
-            .curriculo-elite { flex-direction: column; align-items: stretch; padding: 0; gap: 10px; margin-bottom: 40px;}
-            .item-curriculo { justify-content: flex-start; padding: 15px 20px;}
+            .curriculo-elite { flex-direction: column; align-items: stretch; padding: 0; gap: 12px; margin-bottom: 50px;}
+            .item-curriculo { justify-content: flex-start; padding: 18px 25px;}
 
-            .acervo-cientifico { margin-top: 50px; padding: 40px 20px; }
-            .acervo-grid { grid-template-columns: 1fr; gap: 20px; }
-            .citacao { text-align: left; font-size: 18px; margin-top: 30px; padding: 20px;}
+            .acervo-cientifico { padding: 40px 25px; }
+            .acervo-grid { grid-template-columns: 1fr; gap: 30px; }
+            .citacao { text-align: left; font-size: 20px; margin-top: 40px; padding: 25px;}
             
-            .whatsapp-btn { bottom: 20px; right: 20px; width: 60px; height: 60px; }
-            .whatsapp-icon { width: 32px; height: 32px; }
+            .modal-content { padding: 40px 25px; }
+            #tituloModal { font-size: 28px; }
+            #precoModal { font-size: 32px; }
+
+            .whatsapp-btn { bottom: 25px; right: 25px; width: 65px; height: 65px; }
+            .whatsapp-icon { width: 34px; height: 34px; }
         }
     </style>
 </head>
@@ -505,6 +588,16 @@
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
     <div class="ambient-glow glow-3"></div>
+
+    <div class="particles">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+        <div class="particle p6"></div>
+        <div class="particle p7"></div>
+    </div>
 
     <header>
         <div class="logo">
@@ -519,12 +612,12 @@
         </nav>
     </header>
 
-    <section class="secao-destaque-logo fade-in" id="inicio">
+    <section class="secao-destaque-logo load-in" id="inicio">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="selo-destaque">O Futuro da Liderança na Saúde</div>
                 <h1 class="hero-h1-destaque">O diferencial competitivo será profundamente <span class="destaque-txt">humano.</span></h1>
-                <p class="hero-p-destaque">A excelência técnica abre portas, mas é a comunicação que sustenta sua carreira. Domine a gestão de conflitos no consultório, o posicionamento nos palcos e a liderança de equipes com o método Master.</p>
+                <p class="hero-p-destaque">A excelência técnica abre portas, mas é a comunicação que sustenta sua carreira. Domine a gestão de conflitos no consultório, o posicionamento nos palcos e a liderança de equipes com Formações de Elite.</p>
                 <div class="hero-botoes">
                     <button class="btn btn-glow" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Iniciar Minha Jornada</button>
                     <button class="btn-outline" onclick="document.getElementById('aprender').scrollIntoView({behavior: 'smooth'})">Conhecer os 3 Pilares</button>
@@ -537,31 +630,33 @@
         </div>
     </section>
 
-    <div class="features-bar fade-in">
+    <div class="features-bar">
         <div class="feature-item"><strong>100%</strong> Online e Prático</div>
         <div class="feature-item"><strong>+12h</strong> De Conteúdo</div>
         <div class="feature-item"><strong>MEC</strong> Certificado</div>
         <div class="feature-item"><strong>∞</strong> Acesso Vitalício</div>
     </div>
 
-    <section class="problema-cientifico fade-in">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="problema-cientifico">
         <div class="problema-container">
             <div class="problema-imagem">
                 <img src="rafael-frente2.jpg.png.png" alt="Dr. Rafael Souza Apontando" class="img-apontando">
             </div>
             <div class="problema-textos">
-                <h2>A sua técnica salva vidas.<br><span style="color: var(--dourado);">A sua comunicação salva a sua carreira.</span></h2>
+                <h2>A sua técnica salva vidas.<br><span style="color: var(--dourado-claro);">A sua comunicação salva a sua carreira.</span></h2>
                 <div class="grid-problema">
-                    <div class="card-problema delay-1 fade-in">
+                    <div class="card-problema">
                         <h3>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             O Risco Invisível
                         </h3>
                         <p>Estudos comprovam que uma parcela significativa das reclamações, processos éticos e judicializações na saúde não nascem de falhas técnicas, mas sim de <strong>falhas de comunicação e ausência de empatia</strong>. O paciente raramente processa o médico em quem ele confia.</p>
                     </div>
-                    <div class="card-problema delay-2 fade-in">
+                    <div class="card-problema">
                         <h3>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><circle cx="12" cy="16" r="1"/></svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><circle cx="12" cy="16" r="1"/></svg>
                             A Ciência da Empatia
                         </h3>
                         <p><em>Soft skill</em> não é apenas "ser legal", é resultado clínico mensurável. Pesquisas internacionais demonstram que médicos com altos níveis de empatia garantem maior adesão ao tratamento, apresentando impactos reais na cura.</p>
@@ -571,36 +666,38 @@
         </div>
     </section>
 
-    <section class="metodo-pratico fade-in" id="aprender">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="metodo-pratico" id="aprender">
         <div class="metodo-container">
             <div class="metodo-imagem">
                 <img src="rafael-palestra.jpg.png" alt="Dr. Rafael Palestrando" class="img-palestra">
             </div>
             <div class="metodo-textos">
-                <h2>Uma Formação Master em 3 Pilares</h2>
+                <h2>Uma Formação de Elite em 3 Pilares</h2>
                 <div class="grid-metodo">
-                    <div class="card-metodo delay-1 fade-in">
+                    <div class="card-metodo">
                         <div class="card-header-metodo">
                             <div class="card-icone-metodo">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3A3 3 0 0 1 12 5.5a8 8 0 0 1-8 5V4a2 2 0 0 1 .8-1.7z"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3A3 3 0 0 1 12 5.5a8 8 0 0 1-8 5V4a2 2 0 0 1 .8-1.7z"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
                             </div>
                             <h4>Soft Skills Médicas</h4>
                         </div>
                         <div class="card-body-metodo"><p>Framework prático para o consultório e hospital. Aplique o Algoritmo de 5 Etapas e utilize os "Scripts de Bolso" exatos para desarmar pacientes agressivos, controladores ou exaustos.</p></div>
                     </div>
-                    <div class="card-metodo delay-2 fade-in">
+                    <div class="card-metodo">
                         <div class="card-header-metodo">
                             <div class="card-icone-metodo">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
                             </div>
                             <h4>Oratória e Posicionamento</h4>
                         </div>
                         <div class="card-body-metodo"><p>Transforme a ansiedade em presença magnética. Aprenda a neurobiologia do carisma e as estruturas de discurso (abertura, corpo e fechamento) para dominar congressos e aulas.</p></div>
                     </div>
-                    <div class="card-metodo delay-3 fade-in">
+                    <div class="card-metodo">
                         <div class="card-header-metodo">
                             <div class="card-icone-metodo">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                             </div>
                             <h4>Gestão e Liderança</h4>
                         </div>
@@ -611,81 +708,87 @@
         </div>
     </section>
 
-    <section class="publico-alvo fade-in">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="publico-alvo">
         <h2>Este curso é pra você se...</h2>
         <div class="grid-publico">
-            <div class="item-publico delay-1 fade-in">
+            <div class="item-publico">
                 <div class="icone-publico">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--dourado)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="var(--dourado-claro)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                 </div>
                 <p>Entende que <strong>cuidar de quem cuida não é clichê</strong> e deseja transformar o clima organizacional da sua clínica ou hospital através da gestão humanizada.</p>
             </div>
-            <div class="item-publico delay-2 fade-in">
+            <div class="item-publico">
                 <div class="icone-publico">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--dourado)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="var(--dourado-claro)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 </div>
                 <p>Quer inspirar equipes, blindar sua carreira contra ruídos de comunicação e fortalecer os vínculos com seus pacientes usando ciência e empatia.</p>
             </div>
-            <div class="item-publico delay-3 fade-in">
+            <div class="item-publico">
                 <div class="icone-publico">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--dourado)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="var(--dourado-claro)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <p>Deseja se posicionar como uma verdadeira autoridade no seu nicho, dominando a oratória e sustentando decisões em cenários de alta complexidade.</p>
             </div>
         </div>
     </section>
 
-    <section class="cta-fechamento fade-in">
+    <section class="cta-fechamento">
         <h3>Assuma o protagonismo da sua própria história.</h3>
         <p>"Não espere o momento perfeito. Ele nasce quando você decide agir. O sonho que te move é bem maior que as críticas. Bora sair do lugar!"</p>
         <button class="btn btn-glow" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})">Quero Me Inscrever Agora</button>
     </section>
 
-    <section class="cursos fade-in" id="cursos">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="cursos" id="cursos">
         <div class="cursos-header">
-            <h2>Nossas Formações</h2>
+            <h2>Nossas Formações de Elite</h2>
             <p class="cursos-sub">Escolha o formato que melhor se adapta ao seu momento profissional.</p>
         </div>
         <div class="grid-cursos">
             
-            <div class="card delay-1 fade-in">
+            <div class="card">
                 <div>
-                    <h3>Soft Skills</h3>
-                    <p>Framework prático para o consultório e hospital. Aplique o Algoritmo de 5 Etapas e utilize scripts exatos para desarmar pacientes e familiares em vulnerabilidade emocional.</p>
+                    <h3>Soft Skills Médicas</h3>
+                    <p>O framework definitivo para a linha de frente. Transforme a forma como você se comunica no consultório e plantão.</p>
                 </div>
                 <div>
                     <div class="preco-curso">R$ 2.499,90 <span>/ GRAVADO</span></div>
-                    <button class="btn-curso" onclick="abrirCurso('Curso: Soft Skills Médicas', 'R$ 2.499,90')">Garantir Vaga</button>
+                    <button class="btn-curso" onclick="abrirModalCurso('softSkills')">Ver Detalhes e Garantir Vaga</button>
                 </div>
             </div>
 
-            <div class="card delay-2 fade-in">
+            <div class="card">
                 <div>
                     <h3>Oratória e Presença</h3>
-                    <p>Transforme a ansiedade em presença magnética. Domine palcos, congressos e reuniões com a neurobiologia do carisma e estruturas persuasivas de discurso.</p>
+                    <p>Deixe o medo nos bastidores. Transforme a ansiedade em presença magnética e domine palcos, congressos e reuniões.</p>
                 </div>
                 <div>
                     <div class="preco-curso">R$ 2.499,90 <span>/ GRAVADO</span></div>
-                    <button class="btn-curso" onclick="abrirCurso('Curso: Oratória e Presença', 'R$ 2.499,90')">Garantir Vaga</button>
+                    <button class="btn-curso" onclick="abrirModalCurso('oratoria')">Ver Detalhes e Garantir Vaga</button>
                 </div>
             </div>
             
-            <div class="card card-premium delay-3 fade-in">
+            <div class="card card-premium">
                 <div class="selo-premium">MELHOR CUSTO-BENEFÍCIO</div>
                 <div>
-                    <h3>Gestão Master</h3>
-                    <p>Passe do poder posicional para o pessoal. Técnicas avançadas de mediação de conflitos, roteiros de 1:1, feedbacks e construção de culturas de alta performance. (Inclui acesso aos módulos de Soft Skills e Oratória).</p>
+                    <h3>Gestão Executiva</h3>
+                    <p>Imersão presencial completa: Manhã de conteúdo denso, networking no almoço e tarde com simulações hands-on. (Inclui acesso aos Módulos 1 e 2).</p>
                 </div>
                 <div>
                     <div class="preco-curso">R$ 3.499,90 <span>/ AO VIVO + GRAVADO</span></div>
-                    <button class="btn-curso btn-glow" onclick="abrirCurso('Gestão Master (Ao Vivo)', 'R$ 3.499,90')">Aplicar para a Mentoria</button>
+                    <button class="btn-curso btn-glow" onclick="abrirModalCurso('gestao')">Aplicar para a Mentoria</button>
                 </div>
             </div>
             
         </div>
     </section>
 
-    <section class="impacto fade-in" id="impacto">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="impacto" id="impacto">
         <h2>Impacto Real na Saúde</h2>
         <p class="impacto-sub">A verdadeira liderança se prova na linha de frente e na conexão humana. Veja registros das capacitações e o carinho com nossa maior prioridade: as pessoas.</p>
         
@@ -701,32 +804,32 @@
         </div>
 
         <div class="feedbacks">
-            <div class="card-feedback delay-1 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Foi ótima!! Muito bom, o Rafa explica super bem e deu dicas práticas! Adorei."</p>
                 <p class="autor-feedback">Aluna da Capacitação</p>
             </div>
-            <div class="card-feedback delay-2 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Foi excelente a aula! O Dr Rafael é bem didático e deu ótimas dicas de como se comportar em frente a diversas personalidades de pacientes no nosso dia a dia! Eu gostei muito!"</p>
                 <p class="autor-feedback">Aluno da Capacitação</p>
             </div>
-            <div class="card-feedback delay-3 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Excelente aula!!! 👏👏👏 Deveria ter esse tipo de aula nas faculdades de medicina!!!"</p>
                 <p class="autor-feedback">Aluno da Capacitação</p>
             </div>
-            <div class="card-feedback delay-1 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Gostei bastante. É um tema bem importante. Ele abordou muito bem. Tem uma didática e comunicação muito boas."</p>
                 <p class="autor-feedback">Médico(a) Participante</p>
             </div>
-            <div class="card-feedback delay-2 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Foi excelente. Analisa muito bem o beneficiário e passou dicas práticas de como lidarmos melhor com eles."</p>
                 <p class="autor-feedback">Médico(a) Participante</p>
             </div>
-            <div class="card-feedback delay-3 fade-in">
+            <div class="card-feedback">
                 <div class="estrelas">★★★★★</div>
                 <p class="texto-feedback">"Uma aula técnica em relação a como contornar as personas habituais dos pacientes. Achei muito bom. Muito articulado e dinâmico."</p>
                 <p class="autor-feedback">Médico(a) Participante</p>
@@ -734,11 +837,14 @@
         </div>
 
         <div class="destaque-500">
-            🔥 Mais de 500 médicos e profissionais da saúde já treinados.
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+            Mais de 500 profissionais da saúde já treinados.
         </div>
     </section>
 
-    <section class="sobre-professor fade-in" id="sobre">
+    <div class="divider-container"><hr class="divider"></div>
+
+    <section class="sobre-professor" id="sobre">
         <div class="container-sobre-novo">
             
             <img src="foto1.png.jpeg" alt="Dr. Rafael Souza" class="perfil-enxuto">
@@ -747,31 +853,31 @@
 
             <div class="curriculo-elite">
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     Mais de 25 anos de Experiência Médica
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
                     15 anos em Liderança na Saúde
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     MBA Gestão de Negócios (USP)
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     MBA Psicologia Positiva (PUC-RS)
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     MBA Neurociência (PUC-Campinas)
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     Black Belt - Certificação Six Sigma
                 </div>
                 <div class="item-curriculo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                     +50 Trabalhos Científicos Publicados
                 </div>
             </div>
@@ -783,11 +889,11 @@
                 </div>
             </div>
 
-            <div class="acervo-cientifico fade-in">
+            <div class="acervo-cientifico">
                 <h3>Trajetória e Validação Científica</h3>
                 
                 <div class="acervo-grid">
-                    <div class="acervo-box delay-1 fade-in">
+                    <div class="acervo-box">
                         <h4>Experiência Executiva e Clínica</h4>
                         <ul class="acervo-list">
                             <li><strong>Prevent Senior Rio de Janeiro:</strong> Diretor de Expansão RJ (2022 - Atual)</li>
@@ -800,7 +906,7 @@
                         </ul>
                     </div>
                     
-                    <div class="acervo-box delay-2 fade-in">
+                    <div class="acervo-box">
                         <h4>Prêmios e Reconhecimentos</h4>
                         <ul class="acervo-list">
                             <li><strong>O.P.B. Ordem dos Parlamentares do Brasil</strong> (2005)</li>
@@ -812,7 +918,7 @@
                     </div>
                 </div>
 
-                <div class="acervo-box delay-3 fade-in">
+                <div class="acervo-box" style="margin-bottom: 0;">
                     <h4>Trabalhos Publicados e Participação em Congressos (Acervo)</h4>
                     <div class="scroll-box">
                         <ul class="acervo-list">
@@ -864,11 +970,19 @@
     <div class="modal" id="meuModal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharModal()">×</span>
-            <h2 id="tituloModal" style="color: var(--branco); margin-bottom: 10px; font-size: 34px; font-weight: 700;">Nome do Curso</h2>
-            <p style="color: var(--texto-mutado); margin-bottom: 25px; font-size: 16px;">Módulos liberados imediatamente após a confirmação da inscrição.</p>
-            <div id="precoModal" style="font-size: 44px; font-weight: 800; color: var(--dourado); margin: 25px 0 35px 0; text-shadow: 0 0 20px rgba(229,192,123,0.3); font-family: 'Playfair Display', serif;">R$ 0,00</div>
             
-            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn btn-glow" style="display: block; width: 100%; font-size: 18px; padding: 22px;">Finalizar Matrícula</a>
+            <div class="modal-header">
+                <h2 id="tituloModal">Nome do Curso</h2>
+                <div id="precoModal">R$ 0,00</div>
+            </div>
+
+            <p id="descModal">Descrição do curso aparecerá aqui.</p>
+            
+            <div class="skills-title">Habilidades Adquiridas:</div>
+            <ul id="skillsModal" class="modal-skills-list">
+                </ul>
+
+            <a href="COLE_AQUI_O_SEU_HOTLINK_DE_CHECKOUT_DA_HOTMART" class="btn btn-glow" style="display: flex; width: 100%; font-size: 18px; padding: 22px; margin-top: 20px;">Prosseguir para Matrícula Segura</a>
         </div>
     </div>
 
@@ -879,28 +993,77 @@
     </a>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
-                });
-            }, appearOptions);
-            
-            faders.forEach(fader => appearOnScroll.observe(fader));
-        });
+        // BANCO DE DADOS DOS CURSOS
+        const cursosData = {
+            'softSkills': {
+                nome: 'Soft Skills Médicas',
+                preco: 'R$ 2.499,90',
+                desc: 'O framework definitivo para a linha de frente. Transforme a forma como você se comunica no consultório e plantão, blindando sua carreira e fidelizando pacientes através da ciência da empatia.',
+                skills: [
+                    'Mapeamento instantâneo das 4 Personas do Adoecimento.',
+                    'Desescalada verbal de pacientes e familiares agressivos.',
+                    'Aplicação prática do Algoritmo de 5 Etapas.',
+                    'Blindagem ético-profissional contra processos e quebras de expectativa.'
+                ]
+            },
+            'oratoria': {
+                nome: 'Oratória e Presença',
+                preco: 'R$ 2.499,90',
+                desc: 'Aprenda a dominar palcos, congressos e reuniões corporativas utilizando a neurobiologia do carisma e estruturas de discurso que prendem a atenção do início ao fim.',
+                skills: [
+                    'Técnicas de regulação vagal (4-7-8) para controle absoluto do medo.',
+                    'Estruturação persuasiva de apresentações (Abertura, Corpo, Fechamento).',
+                    'Técnicas de resgate elegante de brancos mentais no palco.',
+                    'Tratamento impecável de objeções ao vivo perante a plateia.'
+                ]
+            },
+            'gestao': {
+                nome: 'Gestão Executiva',
+                preco: 'R$ 3.499,90',
+                desc: 'Uma imersão presencial e exclusiva. Pela manhã, mergulharemos em um conteúdo denso e estratégico sobre liderança. Em seguida, um almoço coletivo focado em networking de alto nível. À tarde, finalizamos com um treinamento hands-on focado na prática de habilidades reais de negociação e mediação. (Inclui acesso irrestrito aos módulos gravados de Soft Skills e Oratória).',
+                skills: [
+                    'Transição do poder posicional (título) para a influência pessoal (confiança).',
+                    'Mediação prática de conflitos complexos entre membros da equipe.',
+                    'Utilização de roteiros e scripts avançados para reuniões 1:1 e feedbacks corretivos.',
+                    'Engenharia de cultura organizacional e segurança psicológica.'
+                ]
+            }
+        };
 
-        function abrirCurso(nome, preco) {
-            document.getElementById('tituloModal').innerText = nome;
-            document.getElementById('precoModal').innerText = preco;
-            document.getElementById('meuModal').style.display = 'flex';
+        // FUNÇÃO PARA ABRIR O MODAL E INJETAR DADOS
+        function abrirModalCurso(cursoId) {
+            const curso = cursosData[cursoId];
+            
+            if (curso) {
+                document.getElementById('tituloModal').innerText = curso.nome;
+                document.getElementById('precoModal').innerText = curso.preco;
+                document.getElementById('descModal').innerText = curso.desc;
+                
+                const skillsList = document.getElementById('skillsModal');
+                skillsList.innerHTML = ''; // Limpa as habilidades antigas
+                
+                curso.skills.forEach(skill => {
+                    const li = document.createElement('li');
+                    // Ícone de check dourado
+                    li.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> ${skill}`;
+                    skillsList.appendChild(li);
+                });
+
+                document.getElementById('meuModal').style.display = 'flex';
+            }
         }
+
+        // FUNÇÃO PARA FECHAR O MODAL
         function fecharModal() {
             document.getElementById('meuModal').style.display = 'none';
+        }
+
+        // FECHAR MODAL CLICANDO FORA DELE
+        window.onclick = function(event) {
+            const modal = document.getElementById('meuModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
